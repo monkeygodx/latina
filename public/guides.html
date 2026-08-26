@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OmeTv Accounts — LATINAGOD</title>
+  <style>
+    /* ── TOKENS ─────────────────────────────── */
+    :root {
+      --bg:#060606;--surface:#0c0c0c;--card:#111111;--card-hover:#161616;
+      --border:rgba(255,255,255,0.07);--border-hi:rgba(34,197,94,0.40);
+      --text:#f5f5f5;--text-muted:#909090;--text-dim:#444444;
+      --a1:#22c55e;--a2:#16a34a;--a3:#ffffff;
+      --a-glow:rgba(34,197,94,0.13);--a-glow-sm:rgba(34,197,94,0.06);
+      --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;
+      --radius:8px;--radius-sm:5px;--radius-lg:14px;
+      --grad:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);
+      --grad-w:linear-gradient(135deg,#ffffff 0%,#d1fae5 100%);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      background:
+        radial-gradient(ellipse 130% 55% at 50% 0%, rgba(34,197,94,.16) 0%, transparent 52%),
+        radial-gradient(ellipse 70% 35% at 15% 60%, rgba(34,197,94,.07) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 30% at 85% 80%, rgba(34,197,94,.05) 0%, transparent 50%),
+        linear-gradient(180deg, #000000 0%, #050905 18%, #0a1f0d 40%, #050905 68%, #000000 100%);
+      background-attachment:fixed;
+      min-height:100vh;color:var(--text);font-family:var(--font);font-size:15px;
+      line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none;}
+    button{cursor:pointer;font-family:var(--font);border:none;background:none;}
+
+    /* ── NAV ── */
+    nav{
+      position:sticky;top:0;z-index:90;
+      display:flex;align-items:center;padding:0 28px;gap:14px;height:60px;
+      background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-brand{
+      font-size:14px;font-weight:900;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--text);white-space:nowrap;margin-right:auto;
+    }
+    .nav-brand span{
+      background:var(--grad-w);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .nav-tg{
+      display:flex;align-items:center;gap:7px;padding:8px 14px;
+      border-radius:var(--radius);background:var(--a-glow-sm);
+      border:1px solid rgba(34,197,94,.15);color:var(--text-muted);
+      font-size:12px;font-weight:700;letter-spacing:.02em;
+      transition:background .15s,border-color .15s,color .15s;
+    }
+    .nav-tg:hover{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.34);color:var(--text);}
+    .nav-back{
+      padding:8px 14px;border-radius:var(--radius);
+      border:1px solid var(--border-hi);color:var(--text-muted);
+      font-size:12px;font-weight:700;
+      transition:color .15s,border-color .15s;
+    }
+    .nav-back:hover{color:var(--text);border-color:rgba(34,197,94,.44);}
+
+    /* ── PAGE ── */
+    .page{max-width:1060px;margin:0 auto;padding:60px 24px 80px;}
+
+    /* ── PAGE HEADER ── */
+    .page-header{text-align:center;margin-bottom:52px;}
+    .page-eyebrow{
+      font-size:10px;font-weight:800;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--a1);margin-bottom:14px;
+    }
+    .page-title{
+      font-size:clamp(1.9rem,5vw,2.9rem);font-weight:900;letter-spacing:-.03em;
+      line-height:1.1;color:var(--text);margin-bottom:16px;text-wrap:balance;
+    }
+    .page-title em{
+      font-style:normal;background:var(--grad);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .page-sub{
+      font-size:1rem;color:var(--text-muted);max-width:500px;
+      margin:0 auto;line-height:1.65;
+    }
+
+    /* ── BUNDLE CARD ── */
+    .bundle-card{
+      background:var(--card);border:1px solid rgba(34,197,94,.18);
+      border-radius:16px;padding:38px 40px;margin-bottom:40px;
+      position:relative;overflow:hidden;
+    }
+    .bundle-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent 0%,rgba(34,197,94,.45) 35%,rgba(34,197,94,.45) 65%,transparent 100%);
+    }
+    .bundle-inner{
+      display:grid;grid-template-columns:1fr auto;gap:52px;align-items:center;
+    }
+    .bundle-badge{
+      display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
+      border-radius:100px;background:var(--a-glow-sm);
+      border:1px solid rgba(34,197,94,.2);font-size:10px;font-weight:800;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--a1);margin-bottom:14px;
+    }
+    .bundle-name{
+      font-size:1.4rem;font-weight:900;letter-spacing:-.025em;
+      color:var(--text);margin-bottom:5px;
+    }
+    .bundle-tagline{font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.5;}
+    .bundle-features{display:flex;flex-direction:column;gap:10px;}
+    .bundle-feat{
+      display:flex;align-items:flex-start;gap:10px;font-size:13px;
+      color:rgba(245,245,245,.68);line-height:1.5;
+    }
+    .bundle-feat-check{color:var(--a1);flex-shrink:0;margin-top:1px;font-weight:700;}
+    .bundle-feat strong{color:var(--text);font-weight:700;}
+
+    .bundle-right{text-align:center;min-width:260px;}
+    .bundle-prices{
+      display:flex;align-items:baseline;justify-content:center;
+      gap:10px;margin-bottom:4px;
+    }
+    .bundle-was{
+      font-size:1.2rem;font-weight:700;
+      color:var(--text-dim);text-decoration:line-through;
+    }
+    .bundle-now{
+      font-size:3.1rem;font-weight:900;letter-spacing:-.04em;
+      color:var(--text);line-height:1;
+    }
+    .bundle-note{font-size:12px;color:var(--text-muted);margin-bottom:6px;}
+    .bundle-save-pill{
+      display:inline-block;padding:3px 11px;border-radius:100px;
+      background:var(--a-glow-sm);border:1px solid rgba(34,197,94,.22);
+      font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--a1);margin-bottom:20px;
+    }
+    .bundle-cta{
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      width:100%;padding:16px 20px;border-radius:var(--radius);
+      background:var(--grad);color:#fff;font-size:14px;font-weight:900;
+      letter-spacing:.01em;text-decoration:none;
+      transition:opacity .18s,transform .15s;
+      box-shadow:0 0 28px rgba(34,197,94,.26);
+    }
+    .bundle-cta:hover{opacity:.88;transform:translateY(-1px);}
+    .bundle-crypto{
+      display:block;width:100%;text-align:center;padding:11px 20px;
+      border-radius:var(--radius);margin-top:9px;font-size:13px;font-weight:700;
+      background:var(--a-glow-sm);border:1px solid rgba(34,197,94,.15);
+      color:var(--text-muted);cursor:pointer;letter-spacing:.02em;
+      transition:background .2s,border-color .2s,color .2s;font-family:var(--font);
+    }
+    .bundle-crypto:hover{background:rgba(34,197,94,.11);border-color:rgba(34,197,94,.32);color:var(--text);}
+
+    /* ── OR DIVIDER ── */
+    .or-label{
+      text-align:center;font-size:10px;font-weight:800;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;
+      display:flex;align-items:center;gap:14px;
+    }
+    .or-label::before,.or-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+    /* ── GUIDES GRID ── */
+    .guides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+
+    .guide-card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--radius-lg);padding:28px 22px;
+      display:flex;flex-direction:column;
+      transition:border-color .2s,transform .2s;
+    }
+    .guide-card:hover{border-color:rgba(34,197,94,.26);transform:translateY(-2px);}
+
+    .guide-name{
+      font-size:13px;font-weight:900;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--text);margin-bottom:5px;
+    }
+    .guide-desc{font-size:12px;color:var(--text-muted);margin-bottom:16px;line-height:1.5;}
+    .guide-price-row{
+      display:flex;align-items:baseline;gap:1px;margin-bottom:3px;
+    }
+    .guide-dollar{font-size:1.1rem;font-weight:800;color:var(--text);line-height:1;}
+    .guide-amount{
+      font-size:2.2rem;font-weight:900;letter-spacing:-.04em;
+      color:var(--text);line-height:1;
+    }
+    .guide-price-note{font-size:11px;color:var(--text-dim);margin-bottom:16px;}
+
+    .guide-stats{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:6px;margin-bottom:16px;
+    }
+    .stat{
+      background:var(--card-hover);border:1px solid var(--border);
+      border-radius:6px;padding:9px 6px;text-align:center;
+    }
+    .stat-val{
+      display:block;font-size:13px;font-weight:800;
+      color:var(--text);letter-spacing:-.01em;margin-bottom:3px;
+    }
+    .stat-lbl{
+      display:block;font-size:9px;font-weight:600;
+      color:var(--text-muted);letter-spacing:.02em;
+    }
+
+    .guide-features{
+      flex:1;display:flex;flex-direction:column;
+      gap:8px;margin-bottom:18px;
+    }
+    .guide-feat{
+      display:flex;align-items:flex-start;gap:8px;
+      font-size:12.5px;color:rgba(245,245,245,.62);line-height:1.45;
+    }
+    .feat-check{color:var(--a1);flex-shrink:0;font-weight:700;margin-top:1px;font-size:13px;}
+
+    .guide-cta{
+      display:flex;align-items:center;justify-content:center;gap:7px;
+      width:100%;padding:13px 16px;border-radius:var(--radius);
+      background:var(--a-glow-sm);border:1px solid rgba(34,197,94,.2);
+      color:var(--text);font-size:13px;font-weight:800;letter-spacing:.01em;
+      text-decoration:none;transition:background .18s,border-color .18s,transform .15s;
+    }
+    .guide-cta:hover{background:rgba(34,197,94,.16);border-color:rgba(34,197,94,.38);transform:translateY(-1px);}
+    .guide-crypto{
+      display:block;width:100%;text-align:center;padding:10px 16px;
+      border-radius:var(--radius);margin-top:8px;font-size:12px;font-weight:700;
+      background:transparent;border:1px solid rgba(34,197,94,.12);
+      color:var(--text-muted);cursor:pointer;letter-spacing:.02em;
+      transition:background .2s,border-color .2s,color .2s;font-family:var(--font);
+    }
+    .guide-crypto:hover{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.28);color:var(--text);}
+
+    /* ── REVIEWS ── */
+    .reviews-section{
+      margin-top:64px;padding-top:64px;
+      border-top:1px solid var(--border);
+    }
+    .reviews-label{
+      font-size:10px;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--a1);margin-bottom:10px;text-align:center;
+    }
+    .reviews-title{
+      font-size:clamp(1.4rem,3vw,2rem);font-weight:800;letter-spacing:-.03em;
+      color:var(--text);margin-bottom:36px;text-align:center;
+    }
+    .review-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+    }
+    .review-card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--radius-lg);padding:24px 22px;
+      display:flex;flex-direction:column;gap:18px;
+    }
+    .review-text{font-size:13.5px;line-height:1.7;color:var(--text);flex:1;}
+    .review-author{display:flex;align-items:center;gap:11px;}
+    .review-avatar{
+      width:36px;height:36px;border-radius:50%;
+      background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;font-weight:800;color:var(--a1);flex-shrink:0;
+    }
+    .review-name{font-size:13px;font-weight:700;color:var(--text);}
+    .review-tag{font-size:11px;color:var(--text-dim);margin-top:1px;}
+
+    /* ── MG STRIP ── */
+    .mg-strip{
+      display:flex;align-items:center;justify-content:space-between;gap:24px;
+      background:rgba(0,0,0,.7);border:1px solid var(--border);
+      border-radius:var(--radius-lg);padding:24px 30px;margin-top:40px;flex-wrap:wrap;
+    }
+    .mg-left{flex:1;min-width:200px;}
+    .mg-label{
+      font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--a1);margin-bottom:5px;opacity:.7;
+    }
+    .mg-title{font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-.015em;margin-bottom:4px;}
+    .mg-sub{font-size:12.5px;color:var(--text-muted);line-height:1.55;}
+    .mg-btn{
+      flex-shrink:0;padding:12px 24px;border-radius:var(--radius);
+      background:var(--grad);color:#fff;font-size:13px;font-weight:800;
+      letter-spacing:.02em;text-decoration:none;
+      transition:opacity .18s,transform .15s;white-space:nowrap;
+      box-shadow:0 0 20px rgba(34,197,94,.2);
+    }
+    .mg-btn:hover{opacity:.88;transform:translateY(-1px);}
+
+    /* ── FOOTER ── */
+    .page-footer{
+      text-align:center;padding:28px 24px 14px;
+      border-top:1px solid var(--border);margin-top:56px;
+    }
+    .page-footer a{
+      font-size:11px;color:var(--text-dim);text-decoration:none;
+      margin:0 9px;transition:color .15s;
+    }
+    .page-footer a:hover{color:var(--text-muted);}
+
+    /* ── CRYPTO MODAL ── */
+    .cr-overlay{position:fixed;inset:0;z-index:300;
+      background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+      display:none;align-items:center;justify-content:center;padding:16px;}
+    .cr-overlay.show{display:flex;}
+    .cr-modal{position:relative;background:var(--card);
+      border:1px solid rgba(34,197,94,.24);border-radius:var(--radius-lg);
+      padding:36px 28px;max-width:450px;width:100%;
+      box-shadow:0 32px 90px rgba(0,0,0,.65);}
+    .cr-close{position:absolute;top:14px;right:14px;
+      width:30px;height:30px;border-radius:8px;
+      background:rgba(255,255,255,.06);border:none;
+      color:var(--text-muted);font-size:.9rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:background .2s,color .2s;}
+    .cr-close:hover{background:rgba(34,197,94,.16);color:var(--text);}
+    .cr-title{font-size:1.25rem;font-weight:800;letter-spacing:-.02em;
+      color:var(--text);margin-bottom:6px;text-align:left;}
+    .cr-sub{font-size:13px;color:var(--text-muted);margin-bottom:22px;
+      line-height:1.55;text-align:left;}
+    .cr-sub b{color:var(--a3);}
+    .cr-list{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;}
+    .cr-row{background:var(--a-glow-sm);border:1px solid var(--border);
+      border-radius:var(--radius);padding:13px 15px;
+      display:grid;grid-template-columns:auto 1fr auto;
+      align-items:center;gap:10px;text-align:left;}
+    .cr-coin-info{}
+    .cr-coin{font-size:13px;font-weight:800;color:var(--text);}
+    .cr-label{font-size:11px;color:var(--text-muted);font-weight:500;margin-top:1px;}
+    .cr-addr{font-size:10.5px;color:var(--text-dim);font-family:monospace;
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+      max-width:160px;margin-top:3px;}
+    .cr-copy{font-size:10px;font-weight:800;padding:6px 11px;
+      background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.22);
+      border-radius:6px;color:var(--a1);cursor:pointer;white-space:nowrap;
+      font-family:var(--font);transition:background .15s,border-color .15s,color .15s;}
+    .cr-copy:hover{background:rgba(34,197,94,.2);border-color:var(--a1);}
+    .cr-copy.copied{background:rgba(34,197,94,.28);border-color:var(--a1);color:#fff;}
+    .cr-admin{display:flex;align-items:center;justify-content:center;gap:8px;
+      width:100%;padding:12px 20px;border-radius:var(--radius-sm);
+      background:var(--grad);color:#fff;font-size:13px;font-weight:800;
+      margin-bottom:14px;transition:opacity .2s;text-decoration:none;
+      box-shadow:0 0 18px rgba(34,197,94,.2);}
+    .cr-admin:hover{opacity:.88;}
+    .cr-fine{font-size:10.5px;color:var(--text-dim);text-align:center;line-height:1.65;}
+    .cr-empty{text-align:center;padding:20px 0;font-size:13px;color:var(--text-muted);line-height:1.6;}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .bundle-inner{grid-template-columns:1fr;gap:28px;}
+      .bundle-right{text-align:left;}
+      .bundle-prices{justify-content:flex-start;}
+    }
+    @media(max-width:760px){
+      .guides-grid{grid-template-columns:1fr;}
+      .page{padding:36px 16px 60px;}
+      .bundle-card{padding:26px 22px;}
+      nav{padding:12px 18px;}
+      .mg-strip{flex-direction:column;text-align:center;}
+      .review-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:500px){
+      .review-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="/" class="nav-brand"><span>LATINA</span>GOD</a>
+  <a href="https://t.me/killsaints" target="_blank" rel="noopener" class="nav-tg">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.014 9.49c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.08 14.4l-2.95-.924c-.642-.2-.654-.642.136-.953l11.527-4.447c.535-.194 1.003.13.769.172z"/>
+    </svg>
+    Telegram
+  </a>
+  <a href="/" class="nav-back">← Back</a>
+</nav>
+
+<!-- ── PAGE ── -->
+<div class="page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="page-eyebrow">Monkey App / OmeTV Accounts</div>
+    <h1 class="page-title">Stop getting skipped.<br><em>Start winning every session.</em></h1>
+    <p class="page-sub">Three methods. One system. Instant PDF download — start implementing in minutes.</p>
+  </div>
+
+  <!-- Bundle card -->
+  <div class="bundle-card">
+    <div class="bundle-inner">
+      <div>
+        <div class="bundle-badge">⚡ Best Value — All Three Guides</div>
+        <div class="bundle-name">All-In-One Bundle</div>
+        <div class="bundle-tagline">Everything in one PDF. Updated when the methods update.</div>
+        <div class="bundle-features">
+          <div class="bundle-feat">
+            <span class="bundle-feat-check">✓</span>
+            <span><strong>Girls Only Method</strong> — Gender filter — 95%+ female matches</span>
+          </div>
+          <div class="bundle-feat">
+            <span class="bundle-feat-check">✓</span>
+            <span><strong>Get Wins Method</strong> — The complete six-component system</span>
+          </div>
+          <div class="bundle-feat">
+            <span class="bundle-feat-check">✓</span>
+            <span><strong>No Ban Method</strong> — Complete ban avoidance + unban</span>
+          </div>
+          <div class="bundle-feat">
+            <span class="bundle-feat-check">✓</span>
+            <span>Every future update to all three, free</span>
+          </div>
+          <div class="bundle-feat">
+            <span class="bundle-feat-check">✓</span>
+            <span>Cheaper than buying any two separately</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bundle-right">
+        <div class="bundle-prices">
+          <span class="bundle-was">$79.97</span>
+          <span class="bundle-now">$49.99</span>
+        </div>
+        <div class="bundle-note">One payment for everything</div>
+        <div class="bundle-save-pill">Save $29.98</div>
+        <a class="bundle-cta" href="https://mycheckout.live/?tier=all_in_one&return=latinagod.xyz">Get all three — $49.99</a>
+        <button class="bundle-crypto" data-tier="All-In-One Bundle" data-price="$49.99">₿ Pay with Crypto</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="or-label">Or buy individually</div>
+
+  <!-- Guides grid -->
+  <div class="guides-grid">
+
+    <!-- Girls Only -->
+    <div class="guide-card">
+      <div class="guide-name">Girls Only</div>
+      <div class="guide-desc">Gender filter — 95%+ female matches</div>
+      <div class="guide-price-row">
+        <span class="guide-dollar">$</span>
+        <span class="guide-amount">29.99</span>
+      </div>
+      <div class="guide-price-note">One-time · instant access</div>
+      <div class="guide-stats">
+        <div class="stat">
+          <span class="stat-val">95%+</span>
+          <span class="stat-lbl">female matches</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">&lt;2 min</span>
+          <span class="stat-lbl">to set up</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">All</span>
+          <span class="stat-lbl">devices</span>
+        </div>
+      </div>
+      <div class="guide-features">
+        <div class="guide-feat"><span class="feat-check">→</span><span>Exact filter settings that force female matches</span></div>
+        <div class="guide-feat"><span class="feat-check">→</span><span>Works on OmeTV, Monkey App, and alternatives</span></div>
+        <div class="guide-feat"><span class="feat-check">→</span><span>Setup takes under 2 minutes per platform</span></div>
+        <div class="guide-feat"><span class="feat-check">→</span><span>Updated when platforms change their filter logic</span></div>
+      </div>
+      <a class="guide-cta" href="https://mycheckout.live/?tier=girls_only&return=latinagod.xyz">Get Girls Only — $29.99</a>
+      <button class="guide-crypto" data-tier="Girls Only" data-price="$29.99">₿ Pay with Crypto</button>
+    </div>
+
+    <!-- Get Wins -->
+    <div class="guide-card">
+      <div class="guide-name">Get Wins</div>
+      <div class="guide-desc">The complete six-component system</div>
+      <div class="guide-price-row">
+        <span class="guide-dollar">$</span>
+        <span class="guide-amount">29.99</span>
+      </div>
+      <div class="guide-price-note">One-time · instant access</div>
+      <div class="guide-stats">
+        <div class="stat">
+          <span class="stat-val">6</span>
+          <span class="stat-lbl">components</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">3–5x</span>
+          <span class="stat-lbl">peak output</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">24/7</span>
+          <span class="stat-lbl">operation</span>
+        </div>
+      </div>
+      <div class="guide-features">
+        <div class="guide-feat"><span class="feat-check">→</span><span>All six components and how they multiply output</span></div>
+        <div class="guide-feat"><span class="feat-check">→</span><span>Lighting, framing, and camera setup breakdown</span></div>
+        <div class="guide-feat"><span class="feat-check">→</span><span>Timing windows that push match rate 3–5x</span></div>
+        <div class="guide-feat"><span class="feat-check">→</span><span>The exact openers that get responses</span></div>
+      </div>
+      <a class="guide-cta" href="https://mycheckout.live/?tier=get_wins&return=latinagod.xyz">Get Wins — $29.99</a>
+      <button class="guide-crypto" data-tier="Get Wins" data-price="$29.99">₿ Pay with Crypto</button>
+    </div>
+
+    <!-- No Ban -->
+    <div class="guide-card">
+      <div class="guide-name">No Ban</div>
+      <div class="guide-desc">Complete ban avoidance + unban</div>
+      <div class="guide-price-row">
+        <span class="guide-dollar">$</span>
+        <span class="guide-amount">19.99</span>
+      </div>
+      <div class="guide-price-note">One-time · instant access</div>
+      <div class="guide-stats">
+        <div class="stat">
+          <span class="stat-val">60s</span>
+          <span class="stat-lbl">ban recovery</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">IP-only</span>
+          <span class="stat-lbl">ban system</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">3</span>
+          <span class="stat-lbl">platforms</span>
+        </div>
+      </div>
+      <div class="guide-features">
+        <div class="guide-feat"><span class="feat-check">→</span><span>Why bans are IP-only — and what that means for you</span></div>
+        <div class="guide-feat"><span class="feat-check">→</span><span>Exact unban method for OmeTV, Monkey, Ome.tv</span></div>
+        <div class="guide-feat"><span class="feat-check">→</span><span>Behavior rules that prevent bans in the first place</span></div>
+        <div class="guide-feat"><span class="feat-check">→</span><span>Recovery takes 60 seconds or less</span></div>
+      </div>
+      <a class="guide-cta" href="https://mycheckout.live/?tier=no_ban&return=latinagod.xyz">No Ban — $19.99</a>
+      <button class="guide-crypto" data-tier="No Ban" data-price="$19.99">₿ Pay with Crypto</button>
+    </div>
+
+  </div><!-- /.guides-grid -->
+
+  <!-- Reviews -->
+  <div class="reviews-section">
+    <div class="reviews-label">Reviews</div>
+    <div class="reviews-title">What customers are saying.</div>
+    <div class="review-grid">
+
+      <div class="review-card">
+        <p class="review-text">"Actually kinda crazy, didn't know this much information was on monkey. Every night i be so happy cus i know when i get on it's so live!"</p>
+        <div class="review-author">
+          <div class="review-avatar">AH</div>
+          <div>
+            <div class="review-name">Alfred H.</div>
+            <div class="review-tag">Verified Buyer · Monkey.app</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <p class="review-text">"Great videos and order was literally instant! Check my email and the order came in like one minute. Opened it up and got exactly what the description said."</p>
+        <div class="review-author">
+          <div class="review-avatar">YB</div>
+          <div>
+            <div class="review-name">Yousef B.</div>
+            <div class="review-tag">Verified Buyer · MonkeyGod Guide</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <p class="review-text">"Order was instant, the guide is actually solid — covered things I didn't know about the app timing. Already seeing better sessions. Would recommend."</p>
+        <div class="review-author">
+          <div class="review-avatar">CB</div>
+          <div>
+            <div class="review-name">Cynere B.</div>
+            <div class="review-tag">Verified Buyer · MonkeyGod Guide</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <p class="review-text">"Literally got into a room full of girls within 10 minutes of following the method. This is not a scam lol. Actually works."</p>
+        <div class="review-author">
+          <div class="review-avatar">MR</div>
+          <div>
+            <div class="review-name">Marcus R.</div>
+            <div class="review-tag">Verified Buyer · Girls Only Guide</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <p class="review-text">"No Ban method is real. Been banned twice before buying this, haven't been banned since. The unban steps work too."</p>
+        <div class="review-author">
+          <div class="review-avatar">TK</div>
+          <div>
+            <div class="review-name">Tyler K.</div>
+            <div class="review-tag">Verified Buyer · No Ban Guide</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <p class="review-text">"Got the all-in-one bundle. Honestly should've been the first thing I bought. Covers everything and the PDF is clean — easy to follow."</p>
+        <div class="review-author">
+          <div class="review-avatar">DS</div>
+          <div>
+            <div class="review-name">Devon S.</div>
+            <div class="review-tag">Verified Buyer · All-In-One Bundle</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MonkeyGod strip -->
+  <div class="mg-strip">
+    <div class="mg-left">
+      <div class="mg-label">🛠 Tools &amp; Extensions</div>
+      <div class="mg-title">Get all the Monkey / OmeTV tools</div>
+      <div class="mg-sub">Scripts, extensions, and tools to maximize your session — all in one place.</div>
+    </div>
+    <a href="https://monkeygod.us" target="_blank" rel="noopener" class="mg-btn">VISIT MONKEYGOD.US →</a>
+  </div>
+
+</div><!-- /.page -->
+
+<!-- Footer -->
+<div class="page-footer">
+  <a href="/">← Home</a>
+  <a href="/privacy">Privacy</a>
+  <a href="/terms">Terms</a>
+  <a href="/refund">Refund Policy</a>
+  <a href="/2257">2257</a>
+  <a href="https://t.me/killsaints" target="_blank" rel="noopener">Support</a>
+</div>
+
+<!-- ── CRYPTO MODAL ── -->
+<div class="cr-overlay" id="cr-overlay">
+  <div class="cr-modal">
+    <button class="cr-close" id="cr-close">✕</button>
+    <div class="cr-title">Pay with Crypto</div>
+    <p class="cr-sub">Send <b id="cr-amount">—</b> for <b id="cr-product">—</b> to any address below. Then DM admin with your txid.</p>
+    <div class="cr-list" id="cr-list"><div class="cr-empty">Loading addresses…</div></div>
+    <a href="https://t.me/killsaints" target="_blank" rel="noopener" class="cr-admin">📨 Message Admin After Payment</a>
+    <p class="cr-fine">Double-check the network before sending. Wrong network = lost funds. Send the exact amount shown.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var crCoins=null;
+  var crOverlay=document.getElementById('cr-overlay');
+  var crList=document.getElementById('cr-list');
+
+  function copyAddr(addr,btn){
+    var fallback=function(){
+      var ta=document.createElement('textarea');
+      ta.value=addr;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');}catch(e){}
+      document.body.removeChild(ta);
+    };
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(addr).then(function(){}).catch(fallback);
+    } else {fallback();}
+    btn.textContent='COPIED ✓';btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='COPY';btn.classList.remove('copied');},2000);
+  }
+
+  function renderCoins(coins){
+    if(!coins||!coins.length){
+      crList.innerHTML='<div class="cr-empty">No crypto addresses configured yet — use card checkout or DM admin directly.</div>';
+      return;
+    }
+    crList.innerHTML=coins.map(function(c){
+      return '<div class="cr-row"><div class="cr-coin-info"><div class="cr-coin">'+c.coin+'</div><div class="cr-label">'+c.label+'</div><div class="cr-addr">'+c.addr+'</div></div><button class="cr-copy" data-addr="'+c.addr+'">COPY</button></div>';
+    }).join('');
+    crList.querySelectorAll('.cr-copy').forEach(function(b){
+      b.addEventListener('click',function(){copyAddr(b.dataset.addr,b);});
+    });
+  }
+
+  function openCrypto(tier,price){
+    document.getElementById('cr-amount').textContent=price;
+    document.getElementById('cr-product').textContent=tier;
+    crOverlay.classList.add('show');
+    if(crCoins!==null){renderCoins(crCoins);return;}
+    crList.innerHTML='<div class="cr-empty">Loading addresses…</div>';
+    fetch('/api/crypto').then(function(r){return r.json();}).then(function(data){
+      crCoins=data;renderCoins(crCoins);
+    }).catch(function(){
+      crCoins=[];renderCoins(crCoins);
+    });
+  }
+
+  var bundleBtn=document.querySelector('.bundle-crypto');
+  if(bundleBtn){
+    bundleBtn.addEventListener('click',function(){
+      openCrypto(bundleBtn.dataset.tier,bundleBtn.dataset.price);
+    });
+  }
+
+  document.querySelectorAll('.guide-crypto').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      openCrypto(btn.dataset.tier,btn.dataset.price);
+    });
+  });
+
+  document.getElementById('cr-close').addEventListener('click',function(){
+    crOverlay.classList.remove('show');
+  });
+  crOverlay.addEventListener('click',function(e){
+    if(e.target===crOverlay)crOverlay.classList.remove('show');
+  });
+})();
+</script>
+</body>
+</html>

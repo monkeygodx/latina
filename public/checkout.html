@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — LATINAGOD</title>
+  <style>
+    /* ── TOKENS ──────────────────────────────────────── */
+    :root {
+      --bg:#060606;--surface:#0c0c0c;--card:#111111;--card-hover:#161616;
+      --border:rgba(255,255,255,0.07);--border-hi:rgba(34,197,94,0.40);
+      --text:#f5f5f5;--text-muted:#909090;--text-dim:#444444;
+      --a1:#22c55e;--a2:#16a34a;--a3:#ffffff;
+      --a-glow:rgba(34,197,94,0.13);--a-glow-sm:rgba(34,197,94,0.06);
+      --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;
+      --radius:8px;--radius-sm:5px;--radius-lg:14px;
+      --grad:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);
+      --grad-w:linear-gradient(135deg,#ffffff 0%,#d1fae5 100%);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      background:
+        radial-gradient(ellipse 120% 50% at 50% 0%, rgba(34,197,94,.14) 0%, transparent 52%),
+        radial-gradient(ellipse 60% 30% at 15% 70%, rgba(34,197,94,.06) 0%, transparent 55%),
+        linear-gradient(180deg, #000000 0%, #050905 20%, #0a1f0d 45%, #050905 72%, #000000 100%);
+      background-attachment:fixed;
+      min-height:100vh;color:var(--text);font-family:var(--font);font-size:15px;
+      line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none;}
+    button{cursor:pointer;font-family:var(--font);border:none;background:none;}
+
+    /* ── NAV ── */
+    .nav{
+      display:flex;align-items:center;padding:0 28px;height:60px;
+      background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);position:sticky;top:0;z-index:90;
+    }
+    .nav-logo{
+      font-size:14px;font-weight:900;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--text);margin-right:auto;
+    }
+    .nav-logo span{
+      background:var(--grad-w);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .nav-back{
+      font-size:12px;font-weight:700;color:var(--text-muted);
+      padding:7px 14px;border-radius:var(--radius);border:1px solid var(--border);
+      transition:color .15s,border-color .15s;
+    }
+    .nav-back:hover{color:var(--text);border-color:rgba(34,197,94,.3);}
+
+    /* ── LAYOUT ── */
+    .co-wrap{
+      max-width:960px;margin:0 auto;padding:52px 24px 80px;
+      display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;
+    }
+
+    /* ── SECTION LABELS ── */
+    .sec-label{
+      font-size:10px;font-weight:800;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--a1);margin-bottom:16px;
+    }
+
+    /* ── ORDER SUMMARY CARD ── */
+    .order-card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--radius-lg);padding:28px;
+    }
+    .order-tier-badge{
+      display:inline-flex;align-items:center;gap:7px;margin-bottom:14px;
+      background:var(--a-glow-sm);border:1px solid rgba(34,197,94,.18);
+      border-radius:100px;padding:4px 13px;font-size:10px;font-weight:800;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--a1);
+    }
+    .order-tier-name{
+      font-size:1.3rem;font-weight:900;letter-spacing:-.025em;
+      color:var(--text);margin-bottom:5px;
+    }
+    .order-tier-desc{
+      font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.5;
+    }
+    .order-feats{
+      list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:22px;
+    }
+    .order-feats li{
+      font-size:13px;color:var(--text-muted);
+      display:flex;align-items:flex-start;gap:8px;
+    }
+    .order-feats li::before{
+      content:'→';color:var(--a1);font-weight:700;flex-shrink:0;margin-top:1px;
+    }
+    .order-divider{border:none;border-top:1px solid var(--border);margin-bottom:20px;}
+
+    /* ── PROMO CODE ── */
+    .promo-label{
+      font-size:11px;font-weight:700;letter-spacing:.05em;
+      text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;
+    }
+    .promo-row{display:flex;gap:8px;margin-bottom:6px;}
+    .promo-input{
+      flex:1;background:var(--surface);border:1px solid var(--border);
+      border-radius:var(--radius);padding:10px 14px;
+      font-size:13px;color:var(--text);font-family:var(--font);
+      letter-spacing:.05em;text-transform:uppercase;outline:none;
+      transition:border-color .2s;
+    }
+    .promo-input::placeholder{color:var(--text-dim);text-transform:none;letter-spacing:0;}
+    .promo-input:focus{border-color:rgba(34,197,94,.4);}
+    .promo-btn{
+      padding:10px 16px;border-radius:var(--radius);
+      background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.22);
+      color:var(--a1);font-size:12px;font-weight:800;letter-spacing:.04em;
+      white-space:nowrap;transition:background .15s,border-color .15s;
+    }
+    .promo-btn:hover{background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.4);}
+    .promo-msg{font-size:12px;min-height:20px;margin-bottom:16px;font-weight:600;}
+    .promo-msg.ok{color:var(--a1);}
+    .promo-msg.err{color:#ef4444;}
+
+    /* ── PRICE DISPLAY ── */
+    .price-block{
+      display:flex;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;gap:8px;padding-top:2px;
+    }
+    .price-label{font-size:13px;color:var(--text-muted);}
+    .price-right{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;}
+    .price-was{
+      font-size:1rem;font-weight:700;color:var(--text-dim);
+      text-decoration:line-through;
+    }
+    .price-value{font-size:2rem;font-weight:900;letter-spacing:-.04em;color:var(--text);}
+    .price-save{
+      font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--a1);padding:3px 8px;background:var(--a-glow-sm);
+      border:1px solid rgba(34,197,94,.2);border-radius:100px;
+    }
+
+    /* ── PAYMENT CARD ── */
+    .pay-card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--radius-lg);padding:28px;
+    }
+    .card-container-wrap{margin-bottom:20px;}
+    #card-container{min-height:90px;}
+    .sq-loading{
+      min-height:90px;display:flex;align-items:center;justify-content:center;
+      border:1px solid var(--border);border-radius:var(--radius);
+      font-size:12px;color:var(--text-dim);letter-spacing:.02em;
+    }
+
+    /* ── ERROR ── */
+    .pay-error{
+      display:none;padding:12px 14px;border-radius:var(--radius);
+      background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.28);
+      color:#f87171;font-size:13px;line-height:1.55;margin-bottom:16px;
+    }
+    .pay-error.show{display:block;}
+
+    /* ── PAY BUTTON ── */
+    .pay-btn{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      width:100%;padding:15px 20px;border-radius:var(--radius);
+      background:var(--grad);color:#fff;font-size:15px;font-weight:900;
+      letter-spacing:.02em;border:none;cursor:pointer;
+      transition:opacity .2s,transform .15s,box-shadow .2s;
+      box-shadow:0 0 28px rgba(34,197,94,.22);margin-bottom:14px;
+    }
+    .pay-btn:hover:not(:disabled){
+      opacity:.9;transform:translateY(-1px);box-shadow:0 0 44px rgba(34,197,94,.38);
+    }
+    .pay-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+    .spin{
+      width:16px;height:16px;border:2.5px solid rgba(255,255,255,.25);
+      border-top-color:#fff;border-radius:50%;
+      animation:spin .7s linear infinite;display:none;flex-shrink:0;
+    }
+    .pay-btn.loading .pay-btn-text{display:none;}
+    .pay-btn.loading .spin{display:block;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* ── TRUST STRIP ── */
+    .trust-row{
+      display:flex;align-items:center;justify-content:center;
+      gap:18px;flex-wrap:wrap;
+    }
+    .trust-item{
+      font-size:11px;color:var(--text-dim);display:flex;
+      align-items:center;gap:5px;font-weight:600;letter-spacing:.02em;
+    }
+    .trust-item::before{content:'✓';color:var(--a1);font-weight:800;}
+
+    /* ── INIT OVERLAY ── */
+    .sq-init-overlay{
+      position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.75);
+      backdrop-filter:blur(10px);display:flex;align-items:center;
+      justify-content:center;flex-direction:column;gap:16px;
+    }
+    .sq-init-overlay.hidden{display:none;}
+    .sq-init-spinner{
+      width:36px;height:36px;border:3px solid rgba(34,197,94,.18);
+      border-top-color:var(--a1);border-radius:50%;
+      animation:spin .9s linear infinite;
+    }
+    .sq-init-text{font-size:13px;color:var(--text-muted);letter-spacing:.02em;}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:720px){
+      .co-wrap{grid-template-columns:1fr;padding:28px 16px 60px;gap:20px;}
+      .nav{padding:0 16px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Init overlay -->
+<div class="sq-init-overlay" id="sq-overlay">
+  <div class="sq-init-spinner"></div>
+  <div class="sq-init-text">Initializing secure checkout…</div>
+</div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-logo"><span>LATINA</span>GOD</div>
+  <a href="/" class="nav-back">← Back</a>
+</nav>
+
+<main class="co-wrap">
+
+  <!-- ── ORDER SUMMARY ── -->
+  <div>
+    <div class="sec-label">Order Summary</div>
+    <div class="order-card">
+      <div class="order-tier-badge" id="tier-badge">Loading…</div>
+      <div class="order-tier-name" id="tier-name"></div>
+      <div class="order-tier-desc" id="tier-desc"></div>
+      <ul class="order-feats" id="tier-feats"></ul>
+
+      <hr class="order-divider">
+
+      <div class="promo-label">Promo Code</div>
+      <div class="promo-row">
+        <input class="promo-input" type="text" id="promo-input"
+               placeholder="e.g. FUEGO" autocomplete="off" maxlength="24" spellcheck="false"/>
+        <button class="promo-btn" id="promo-btn">Apply</button>
+      </div>
+      <div class="promo-msg" id="promo-msg"></div>
+
+      <div class="price-block">
+        <div class="price-label">Total due</div>
+        <div class="price-right">
+          <span class="price-was" id="price-was"></span>
+          <span class="price-value" id="price-val">—</span>
+          <span class="price-save" id="price-save"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAYMENT ── -->
+  <div>
+    <div class="sec-label">Payment Details</div>
+    <div class="pay-card">
+      <div class="card-container-wrap">
+        <div id="card-container">
+          <div class="sq-loading">Loading card form…</div>
+        </div>
+      </div>
+
+      <div class="pay-error" id="pay-error"></div>
+
+      <button class="pay-btn" id="pay-btn" disabled>
+        <span class="pay-btn-text" id="pay-btn-text">Pay —</span>
+        <div class="spin"></div>
+      </button>
+
+      <div class="trust-row">
+        <div class="trust-item">Encrypted</div>
+        <div class="trust-item">Discreet billing</div>
+        <div class="trust-item">Instant access</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+(function () {
+  /* ── TIER CATALOG ─────────────────────────────────────────────────── */
+  var TIERS = {
+    basic:     { name:'Basic',             cents:1999, display:'$19.99', desc:'3,000+ exclusive Latina videos. Instant channel access.', feats:['3,000+ exclusive videos','Latina creators, unfiltered','Instant channel access','Lifetime access'] },
+    exclusive: { name:'Exclusive',         cents:2999, display:'$29.99', desc:'5,000+ videos across more creators and more variety.', feats:['5,000+ exclusive videos','Everything in Basic','More creators, more variety','Daily new drops'] },
+    premium:   { name:'Premium',           cents:4999, display:'$49.99', desc:'Full library — 10,000+ videos, every channel unlocked.', feats:['10,000+ exclusive videos','Every channel unlocked','Biggest library, no limits','Priority access + updates'] },
+    girls_only:{ name:'Girls Only',        cents:2999, display:'$29.99', desc:'Gender filter — 95%+ female matches on OmeTV and Monkey App.', feats:['Exact filter settings','Works on OmeTV + Monkey App','Under 2 min setup','Updated when platforms change'] },
+    get_wins:  { name:'Get Wins',          cents:2999, display:'$29.99', desc:'Six-component system for maximum match rate sessions.', feats:['All six components explained','Lighting + framing breakdown','Timing windows — 3–5x match rate','Openers that get responses'] },
+    no_ban:    { name:'No Ban',            cents:1999, display:'$19.99', desc:'Complete ban avoidance + unban in 60 seconds.', feats:['Why bans are IP-only','Exact unban method','Behavior rules to stay clean','60s recovery'] },
+    all_in_one:{ name:'All-In-One Bundle', cents:4999, display:'$49.99', desc:'Every guide in one PDF. Girls Only + Get Wins + No Ban.', feats:['Girls Only Method','Get Wins Method','No Ban Method','All future updates, free'] },
+  };
+  var PROMOS = { FUEGO: 0.15 };
+
+  /* ── PARSE URL ────────────────────────────────────────────────────── */
+  var params  = new URLSearchParams(window.location.search);
+  var tierKey = (params.get('tier') || 'exclusive').toLowerCase();
+  var tier    = TIERS[tierKey] || TIERS['exclusive'];
+  if (!TIERS[tierKey]) tierKey = 'exclusive';
+
+  var discount   = 0;
+  var promoUsed  = '';
+  var sqCard     = null;
+
+  /* ── RENDER TIER ──────────────────────────────────────────────────── */
+  document.getElementById('tier-badge').textContent = tier.name;
+  document.getElementById('tier-name').textContent  = tier.name;
+  document.getElementById('tier-desc').textContent  = tier.desc;
+  var featsEl = document.getElementById('tier-feats');
+  tier.feats.forEach(function (f) {
+    var li = document.createElement('li');
+    li.textContent = f;
+    featsEl.appendChild(li);
+  });
+  renderPrice();
+  renderPayBtn();
+
+  function amountCents() {
+    return discount > 0
+      ? Math.round(tier.cents * (1 - discount))
+      : tier.cents;
+  }
+
+  function fmtCents(c) {
+    return '$' + (c / 100).toFixed(2);
+  }
+
+  function renderPrice() {
+    var was  = document.getElementById('price-was');
+    var val  = document.getElementById('price-val');
+    var save = document.getElementById('price-save');
+    val.textContent = fmtCents(amountCents());
+    if (discount > 0) {
+      was.textContent  = tier.display;
+      save.textContent = Math.round(discount * 100) + '% OFF';
+      was.style.display  = '';
+      save.style.display = '';
+    } else {
+      was.style.display  = 'none';
+      save.style.display = 'none';
+    }
+  }
+
+  function renderPayBtn() {
+    document.getElementById('pay-btn-text').textContent = 'Pay ' + fmtCents(amountCents()) + ' →';
+  }
+
+  /* ── PROMO CODE ───────────────────────────────────────────────────── */
+  document.getElementById('promo-btn').addEventListener('click', applyPromo);
+  document.getElementById('promo-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') applyPromo();
+  });
+
+  function applyPromo() {
+    var code = document.getElementById('promo-input').value.trim().toUpperCase();
+    var msg  = document.getElementById('promo-msg');
+    if (!code) {
+      msg.textContent  = 'Enter a promo code.';
+      msg.className    = 'promo-msg err';
+      return;
+    }
+    var disc = PROMOS[code];
+    if (disc) {
+      discount  = disc;
+      promoUsed = code;
+      msg.textContent = '✓ ' + Math.round(disc * 100) + '% off applied!';
+      msg.className   = 'promo-msg ok';
+      renderPrice();
+      renderPayBtn();
+    } else {
+      msg.textContent = 'Invalid code. Try FUEGO for 15% off.';
+      msg.className   = 'promo-msg err';
+    }
+  }
+
+  /* ── LOAD SQUARE SDK ──────────────────────────────────────────────── */
+  fetch('/api/config')
+    .then(function (r) { return r.json(); })
+    .then(function (cfg) {
+      var sdkUrl = cfg.env === 'production'
+        ? 'https://web.squarecdn.com/v1/square.js'
+        : 'https://sandbox.web.squarecdn.com/v1/square.js';
+      var s  = document.createElement('script');
+      s.src  = sdkUrl;
+      s.onload  = function () { initPayments(cfg); };
+      s.onerror = function () { fatalError('Failed to load payment SDK. Please refresh.'); };
+      document.head.appendChild(s);
+    })
+    .catch(function () {
+      fatalError('Could not connect. Please check your connection and refresh.');
+    });
+
+  function fatalError(msg) {
+    document.getElementById('sq-overlay').classList.add('hidden');
+    showErr(msg);
+  }
+
+  function showErr(msg) {
+    var el = document.getElementById('pay-error');
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+
+  function hideErr() {
+    var el = document.getElementById('pay-error');
+    el.textContent = '';
+    el.classList.remove('show');
+  }
+
+  /* ── INIT SQUARE PAYMENTS ─────────────────────────────────────────── */
+  async function initPayments(cfg) {
+    if (!window.Square) { fatalError('Payment system unavailable. Please refresh.'); return; }
+
+    var payments;
+    try {
+      payments = window.Square.payments(cfg.appId, cfg.locationId);
+    } catch (e) {
+      fatalError('Payment init error: ' + (e.message || 'unknown'));
+      return;
+    }
+
+    var cardStyle = {
+      '.input-container': {
+        borderColor: 'rgba(255,255,255,0.12)',
+        borderRadius: '8px',
+      },
+      '.input-container.is-focus': {
+        borderColor: 'rgba(34,197,94,0.65)',
+      },
+      '.input-container.is-error': {
+        borderColor: '#ef4444',
+      },
+      '.message-text': { color: '#909090' },
+      '.message-icon': { color: '#909090' },
+      'input': {
+        backgroundColor: '#111111',
+        color:           '#f5f5f5',
+        fontFamily:      '-apple-system, BlinkMacSystemFont, system-ui, sans-serif',
+      },
+      'input::placeholder': { color: '#444444' },
+    };
+
+    try {
+      sqCard = await payments.card({ style: cardStyle });
+      await sqCard.attach('#card-container');
+      document.getElementById('sq-overlay').classList.add('hidden');
+      document.getElementById('pay-btn').disabled = false;
+    } catch (e) {
+      fatalError('Card form failed to load. Please refresh.');
+    }
+  }
+
+  /* ── PAY ──────────────────────────────────────────────────────────── */
+  document.getElementById('pay-btn').addEventListener('click', async function () {
+    if (!sqCard) return;
+    var btn = document.getElementById('pay-btn');
+    btn.disabled = true;
+    btn.classList.add('loading');
+    hideErr();
+
+    try {
+      var tokenResult = await sqCard.tokenize();
+      if (tokenResult.status !== 'OK') {
+        var msgs = (tokenResult.errors || []).map(function (e) { return e.message; }).join(' ');
+        throw new Error(msgs || 'Card details are incomplete or invalid.');
+      }
+
+      var body = {
+        sourceId: tokenResult.token,
+        tier:     tierKey,
+      };
+      if (promoUsed) body.promoCode = promoUsed;
+
+      var resp = await fetch('/api/pay', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(body),
+      });
+      var data = await resp.json();
+
+      if (!resp.ok || !data.success) {
+        throw new Error(data.error || 'Payment declined. Please try a different card.');
+      }
+
+      /* ── SUCCESS ── */
+      window.location.href = '/success?tier=' + encodeURIComponent(tierKey);
+
+    } catch (e) {
+      showErr(e.message || 'Something went wrong. Please try again.');
+      btn.disabled = false;
+      btn.classList.remove('loading');
+    }
+  });
+
+}());
+</script>
+</body>
+</html>

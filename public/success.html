@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're In — LATINAGOD</title>
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --bg:#060606;--surface:#0c0c0c;--card:#111111;
+      --border:rgba(255,255,255,0.07);--border-hi:rgba(34,197,94,0.40);
+      --text:#f5f5f5;--text-muted:#909090;--text-dim:#444444;
+      --a1:#22c55e;--a2:#16a34a;
+      --a-glow:rgba(34,197,94,0.13);--a-glow-sm:rgba(34,197,94,0.06);
+      --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;
+      --radius:8px;--radius-lg:14px;
+      --grad:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);
+      --grad-w:linear-gradient(135deg,#ffffff 0%,#d1fae5 100%);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      background:
+        radial-gradient(ellipse 100% 50% at 50% 0%, rgba(34,197,94,.18) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 50% 50%, rgba(34,197,94,.07) 0%, transparent 60%),
+        linear-gradient(180deg, #000000 0%, #050905 25%, #0a1f0d 50%, #050905 75%, #000000 100%);
+      background-attachment:fixed;
+      min-height:100vh;color:var(--text);font-family:var(--font);
+      -webkit-font-smoothing:antialiased;overflow-x:hidden;
+      display:flex;flex-direction:column;
+    }
+    a{color:inherit;text-decoration:none;}
+
+    /* ── NAV ── */
+    nav{
+      display:flex;align-items:center;padding:0 28px;height:60px;
+      background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo{
+      font-size:14px;font-weight:900;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--text);
+    }
+    .nav-logo span{
+      background:var(--grad-w);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;
+    }
+
+    /* ── MAIN ── */
+    main{
+      flex:1;display:flex;align-items:center;justify-content:center;
+      padding:40px 20px 80px;
+    }
+    .success-wrap{
+      max-width:520px;width:100%;text-align:center;
+    }
+
+    /* ── ANIMATED CHECKMARK ── */
+    .check-wrap{
+      width:84px;height:84px;margin:0 auto 28px;
+    }
+    .check-svg{width:100%;height:100%;}
+    .check-circle{
+      stroke:var(--a1);stroke-width:2.5;
+      stroke-dasharray:160;stroke-dashoffset:160;
+      animation:drawCircle .7s ease forwards;
+    }
+    .check-mark{
+      stroke:var(--a1);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+      stroke-dasharray:50;stroke-dashoffset:50;
+      animation:drawMark .4s ease forwards .65s;
+    }
+    @keyframes drawCircle{
+      to{stroke-dashoffset:0;}
+    }
+    @keyframes drawMark{
+      to{stroke-dashoffset:0;}
+    }
+
+    /* ── HEADING ── */
+    .success-title{
+      font-size:clamp(2.8rem,8vw,4.5rem);font-weight:900;
+      letter-spacing:-.04em;color:var(--text);margin-bottom:12px;line-height:1;
+    }
+    .success-sub{
+      font-size:1rem;color:var(--text-muted);margin-bottom:36px;
+      line-height:1.6;max-width:380px;margin-left:auto;margin-right:auto;
+    }
+
+    /* ── TELEGRAM BUTTON ── */
+    .tg-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:12px;
+      padding:18px 36px;border-radius:var(--radius);
+      background:var(--grad);color:#fff;font-size:16px;font-weight:900;
+      letter-spacing:.02em;text-decoration:none;
+      transition:opacity .2s,transform .15s,box-shadow .2s;
+      box-shadow:0 0 44px rgba(34,197,94,.32);
+      margin-bottom:10px;width:100%;max-width:380px;
+    }
+    .tg-btn:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 0 64px rgba(34,197,94,.44);}
+    .tg-btn svg{flex-shrink:0;}
+    .tg-note{font-size:11px;color:var(--text-dim);margin-bottom:44px;letter-spacing:.01em;}
+
+    /* ── STEPS ── */
+    .steps-label{
+      font-size:10px;font-weight:800;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--a1);margin-bottom:18px;
+    }
+    .steps{
+      display:flex;flex-direction:column;gap:0;
+      max-width:380px;margin:0 auto 44px;
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--radius-lg);overflow:hidden;
+    }
+    .step-row{
+      display:flex;align-items:center;gap:16px;
+      padding:16px 20px;border-bottom:1px solid var(--border);
+    }
+    .step-row:last-child{border-bottom:none;}
+    .step-num{
+      width:28px;height:28px;border-radius:50%;flex-shrink:0;
+      background:var(--a-glow);border:1px solid var(--border-hi);
+      display:flex;align-items:center;justify-content:center;
+      font-size:12px;font-weight:900;color:var(--a1);
+    }
+    .step-text{font-size:13px;color:var(--text-muted);text-align:left;line-height:1.4;}
+    .step-text strong{color:var(--text);font-weight:700;}
+
+    /* ── SUPPORT ── */
+    .support-line{font-size:13px;color:var(--text-dim);}
+    .support-link{
+      color:var(--text-muted);font-weight:700;transition:color .15s;
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .support-link:hover{color:var(--text);}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><span>LATINA</span>GOD</a>
+</nav>
+
+<main>
+  <div class="success-wrap">
+
+    <!-- Animated check -->
+    <div class="check-wrap">
+      <svg class="check-svg" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle class="check-circle" cx="26" cy="26" r="23"/>
+        <path class="check-mark" d="M14.5 26.5l8 8 15-17"/>
+      </svg>
+    </div>
+
+    <h1 class="success-title">You're In.</h1>
+    <p class="success-sub">Access confirmed. Tap the button below to join the channel — it opens immediately.</p>
+
+    <!-- Telegram CTA -->
+    <a href="https://t.me/+gnq0kLfzCDoyZGM5" target="_blank" rel="noopener" class="tg-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.014 9.49c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.08 14.4l-2.95-.924c-.642-.2-.654-.642.136-.953l11.527-4.447c.535-.194 1.003.13.769.172z"/>
+      </svg>
+      Join the Channel Now →
+    </a>
+    <p class="tg-note">Opens in Telegram — bookmark the link once you're in</p>
+
+    <!-- Steps -->
+    <div class="steps-label">What to do now</div>
+    <div class="steps">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Tap the button above</strong> to open the channel invite in Telegram</div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Join the channel</strong> — one tap inside Telegram</div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Bookmark the link</strong> so you always have it</div>
+      </div>
+    </div>
+
+    <!-- Support -->
+    <p class="support-line">
+      Issue with access?&nbsp;
+      <a href="https://t.me/killsaints" target="_blank" rel="noopener" class="support-link">DM admin on Telegram →</a>
+    </p>
+
+  </div>
+</main>
+
+</body>
+</html>
