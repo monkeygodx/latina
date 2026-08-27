@@ -257,33 +257,43 @@
     .tier-card.featured{border-color:var(--a1);
       box-shadow:0 0 44px rgba(34,197,94,.12);position:relative;}
     .tier-card.featured::before{content:'MOST POPULAR';position:absolute;
-      top:-1px;left:50%;transform:translateX(-50%);
+      top:-14px;left:50%;transform:translateX(-50%);
       background:var(--grad);color:#fff;font-size:9px;font-weight:900;
-      letter-spacing:.14em;padding:4px 14px;border-radius:0 0 8px 8px;}
-    .tier-icon{font-size:28px;margin-bottom:16px;}
-    .tier-name{font-size:12px;font-weight:700;letter-spacing:.08em;
-      text-transform:uppercase;color:var(--a3);margin-bottom:8px;}
-    .tier-price{font-size:2.5rem;font-weight:900;letter-spacing:-.04em;
-      color:var(--text);line-height:1;}
-    .tier-price span{font-size:.95rem;font-weight:500;color:var(--text-muted);}
+      letter-spacing:.14em;padding:5px 18px;border-radius:99px;
+      white-space:nowrap;}
+    .tier-icon{font-size:28px;margin-bottom:12px;}
+    .tier-name{font-size:11px;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--a1);margin-bottom:14px;}
+    .tier-price{font-size:2.9rem;font-weight:900;letter-spacing:-.04em;
+      color:var(--text);line-height:1;margin-bottom:4px;}
+    .tier-price-note{display:block;font-size:11px;font-weight:500;
+      color:var(--text-dim);letter-spacing:.04em;text-transform:uppercase;
+      margin-top:6px;margin-bottom:14px;}
     .tier-desc{font-size:13px;color:var(--text-muted);
-      margin:14px 0 20px;line-height:1.55;}
-    .tier-divider{border:none;border-top:1px solid var(--border);margin-bottom:18px;}
+      margin-bottom:18px;line-height:1.55;}
+    .tier-divider{border:none;border-top:1px solid var(--border);margin-bottom:16px;}
     .tier-feats{list-style:none;display:flex;flex-direction:column;
-      gap:10px;margin-bottom:26px;}
+      gap:11px;margin-bottom:24px;}
     .tier-feats li{font-size:13px;color:var(--text-muted);
-      display:flex;align-items:flex-start;gap:8px;}
-    .tier-feats li::before{content:'→';color:var(--a1);
-      font-weight:700;flex-shrink:0;margin-top:1px;}
+      display:flex;align-items:center;gap:10px;}
+    .tier-feats li::before{content:'';width:18px;height:18px;flex-shrink:0;
+      border-radius:50%;background:rgba(34,197,94,.12);
+      border:1px solid rgba(34,197,94,.28);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%2322c55e' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:center;background-size:10px;}
     .tier-btn{display:block;width:100%;text-align:center;
-      padding:13px 20px;border-radius:var(--radius-sm);
-      font-size:14px;font-weight:800;letter-spacing:.02em;transition:all .2s;}
+      padding:14px 20px;border-radius:var(--radius-sm);
+      font-size:14px;font-weight:800;letter-spacing:.02em;transition:all .2s;
+      text-decoration:none;}
     .tbtn-main{background:var(--grad);color:#fff;
       box-shadow:0 0 20px rgba(34,197,94,.2);}
     .tbtn-main:hover{opacity:.88;box-shadow:0 0 36px rgba(34,197,94,.34);}
-    .tbtn-ghost{background:transparent;color:var(--text-muted);
-      border:1.5px solid var(--border);}
-    .tbtn-ghost:hover{border-color:rgba(34,197,94,.26);color:var(--text);}
+    .tbtn-ghost{background:transparent;color:var(--text);
+      border:1.5px solid rgba(255,255,255,.12);}
+    .tbtn-ghost:hover{border-color:rgba(34,197,94,.36);color:var(--text);}
+    .tier-stamp{font-size:10px;font-weight:600;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--text-dim);text-align:center;
+      margin-top:11px;}
     .tier-crypto{display:block;width:100%;text-align:center;
       padding:10px 20px;border-radius:var(--radius-sm);margin-top:9px;
       font-size:13px;font-weight:700;letter-spacing:.02em;
@@ -595,10 +605,10 @@
   </div>
   <div class="tier-grid">
     <div class="tier-card">
-      <div class="tier-icon">🌶️</div>
       <div class="tier-name">Basic</div>
-      <div class="tier-price">$19<span>.99/one-time</span></div>
-      <p class="tier-desc">Start here. 3,000+ unfiltered Latina videos, one payment, instant Telegram access. No subscriptions, no games.</p>
+      <div class="tier-price">$19.99</div>
+      <div class="tier-price-note">One-time payment</div>
+      <p class="tier-desc">Start here. 3,000+ unfiltered Latina videos, one payment, instant Telegram access.</p>
       <hr class="tier-divider">
       <ul class="tier-feats">
         <li>3,000+ exclusive videos</li>
@@ -606,14 +616,15 @@
         <li>Instant channel access</li>
         <li>Lifetime access</li>
       </ul>
-      <a href="https://mycheckout.live/?tier=latina_basic&return=latinagod.xyz" class="tier-btn tbtn-ghost">Get Access</a>
+      <a href="https://mycheckout.live/?tier=latina_basic&return=latinagod.xyz" class="tier-btn tbtn-ghost">Get Basic Access</a>
+      <div class="tier-stamp">One-time · Instant · No subscription</div>
       <button class="tier-crypto" data-tier="Basic" data-price="$19.99">Pay with Crypto</button>
     </div>
     <div class="tier-card featured">
-      <div class="tier-icon">💎</div>
       <div class="tier-name">Exclusive</div>
-      <div class="tier-price">$29<span>.99/one-time</span></div>
-      <p class="tier-desc">The smart pick. 5,000+ videos, more creators, daily fresh drops. This is where most members land — and stay.</p>
+      <div class="tier-price">$29.99</div>
+      <div class="tier-price-note">One-time payment</div>
+      <p class="tier-desc">The smart pick. 5,000+ videos, more creators, daily fresh drops. This is where most members land.</p>
       <hr class="tier-divider">
       <ul class="tier-feats">
         <li>5,000+ exclusive videos</li>
@@ -621,14 +632,15 @@
         <li>More creators, more variety</li>
         <li>Daily new drops</li>
       </ul>
-      <a href="https://mycheckout.live/?tier=latina_exclusive&return=latinagod.xyz" class="tier-btn tbtn-main">Get Access →</a>
+      <a href="https://mycheckout.live/?tier=latina_exclusive&return=latinagod.xyz" class="tier-btn tbtn-main">Get Exclusive — $29.99 →</a>
+      <div class="tier-stamp">One-time · Instant · No subscription</div>
       <button class="tier-crypto" data-tier="Exclusive" data-price="$29.99">Pay with Crypto</button>
     </div>
     <div class="tier-card">
-      <div class="tier-icon">👑</div>
       <div class="tier-name">Premium</div>
-      <div class="tier-price">$49<span>.99/one-time</span></div>
-      <p class="tier-desc">The full vault. 10,000+ videos, every channel, nothing held back. One payment and the whole thing is yours.</p>
+      <div class="tier-price">$49.99</div>
+      <div class="tier-price-note">One-time payment</div>
+      <p class="tier-desc">The full vault. 10,000+ videos, every channel, nothing held back. One payment, whole thing is yours.</p>
       <hr class="tier-divider">
       <ul class="tier-feats">
         <li>10,000+ exclusive videos</li>
@@ -636,7 +648,8 @@
         <li>Biggest library, no limits</li>
         <li>Priority access + updates</li>
       </ul>
-      <a href="https://mycheckout.live/?tier=latina_premium&return=latinagod.xyz" class="tier-btn tbtn-ghost">Get Access</a>
+      <a href="https://mycheckout.live/?tier=latina_premium&return=latinagod.xyz" class="tier-btn tbtn-ghost">Get Premium Access</a>
+      <div class="tier-stamp">One-time · Instant · No subscription</div>
       <button class="tier-crypto" data-tier="Premium" data-price="$49.99">Pay with Crypto</button>
     </div>
   </div>
@@ -892,12 +905,17 @@ function closeMobileMenu(){
   })();
   psGo(0);
   window.addEventListener('resize',function(){psPosition(psCur);});
-  // Autoplay first slide immediately, muted
+  // Autoplay first slide — wait for canplay so browser has data ready
   (function(){
     var v=slides[0].querySelector('.ps-video');
     if(!v)return;
     v.muted=true;
-    v.play().then(function(){slides[0].classList.add('playing');}).catch(function(){});
+    v.load();
+    function tryPlay(){
+      v.play().then(function(){slides[0].classList.add('playing');}).catch(function(){});
+    }
+    if(v.readyState>=3){tryPlay();}
+    else{v.addEventListener('canplay',tryPlay,{once:true});}
   })();
   // ── FAQ ACCORDION ──
   document.querySelectorAll('.faq-q').forEach(function(q){
