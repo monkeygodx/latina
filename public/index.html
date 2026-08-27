@@ -143,18 +143,18 @@
     .stat-label{font-size:11px;font-weight:600;letter-spacing:.06em;
       text-transform:uppercase;color:var(--text-dim);margin-top:4px;}
     /* ── PREVIEW SLIDER ── */
-    .preview-slider{position:relative;max-width:1000px;margin:0 auto;padding:0 52px;}
+    .preview-slider{position:relative;max-width:860px;margin:0 auto;padding:0 56px;}
     .ps-viewport{overflow:hidden;border-radius:var(--radius-lg);}
-    .ps-track{display:flex;gap:10px;will-change:transform;
+    .ps-track{display:flex;gap:12px;will-change:transform;
       transition:transform .38s cubic-bezier(.4,0,.2,1);}
-    .ps-slide{flex-shrink:0;width:44%;border-radius:var(--radius);overflow:hidden;
-      position:relative;aspect-ratio:1/1;background:var(--card);
+    .ps-slide{flex-shrink:0;width:52%;border-radius:var(--radius-lg);overflow:hidden;
+      position:relative;aspect-ratio:4/5;background:var(--card);
       border:1px solid var(--border);cursor:pointer;
-      opacity:.35;transform:scale(.88);
-      transition:transform .38s ease,opacity .38s ease,border-color .25s,box-shadow .25s;}
-    .ps-slide.active{opacity:1;transform:scale(1);border-color:rgba(34,197,94,.25);}
+      opacity:.28;transform:scale(.86) translateY(12px);
+      transition:transform .4s ease,opacity .4s ease,border-color .25s,box-shadow .25s;}
+    .ps-slide.active{opacity:1;transform:scale(1) translateY(0);border-color:rgba(34,197,94,.3);}
     .ps-slide.active.playing{border-color:var(--a1);
-      box-shadow:0 0 48px rgba(34,197,94,.28);}
+      box-shadow:0 0 60px rgba(34,197,94,.3);}
     .ps-video{position:absolute;inset:0;width:100%;height:100%;
       object-fit:cover;display:block;}
     .ps-overlay{position:absolute;inset:0;
@@ -412,7 +412,7 @@
       .tier-grid{grid-template-columns:1fr 1fr;}
       .why-grid{grid-template-columns:repeat(2,1fr);}
       .preview-slider{padding:0 44px;}
-      .ps-slide{width:60%;}
+      .ps-slide{width:68%;}
       .mg-banner{flex-direction:column;text-align:center;}
     }
     @media(max-width:640px){
@@ -430,7 +430,7 @@
       .stat-item{border-right:none;border-bottom:1px solid var(--border);flex:1 1 50%;}
       .stat-item:nth-last-child(2),.stat-item:last-child{border-bottom:none;}
       .preview-slider{padding:0 36px;}
-      .ps-slide{width:75%;}
+      .ps-slide{width:82%;}
       .ps-arrow{width:34px;height:34px;font-size:16px;}
       .ps-prev{left:0;}
       .ps-next{right:0;}
@@ -480,8 +480,8 @@
 <main>
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="kingdom-badge"><span class="kb-dot"></span>From the Creators of MonkeyGod &amp; JabiGod</div>
-  <div class="hero-eyebrow"><span class="dot"></span>Unfiltered · 18+ · Unseen Content</div>
+  <div class="kingdom-badge"><span class="kb-dot"></span>From the creators of MonkeyGod &amp; JabiGod</div>
+  <div class="hero-eyebrow"><span class="dot"></span>Unfiltered &nbsp;·&nbsp; 18+ &nbsp;·&nbsp; Exclusive Access</div>
   <h1 class="hero-title">The Latina<br><em>Vault.</em></h1>
   <p class="hero-sub">Unfiltered 18+ Latina content you won't find anywhere else. From the creators of MonkeyGod, JabiGod, and more — one vault to cover it all.</p>
   <div class="hero-btns">
@@ -498,15 +498,15 @@
 <!-- ── PREVIEW SLIDER ── -->
 <section id="preview" style="padding:80px 32px;">
   <div class="section-head">
-    <div class="section-eyebrow">🔥 Preview</div>
+    <div class="section-eyebrow">Preview</div>
     <h2 class="section-title">What's Inside the <em>Vault</em></h2>
-    <p class="section-sub">Swipe through. Tap to play. One at a time.</p>
+    <p class="section-sub">Tap to play. Swipe to browse.</p>
   </div>
   <div class="preview-slider">
     <div class="ps-viewport">
       <div class="ps-track" id="ps-track">
         <div class="ps-slide active" id="ps-0">
-          <video class="ps-video" src="/videos/latina1.mp4" muted loop playsinline preload="none"></video>
+          <video class="ps-video" src="/videos/latina1.mp4" muted loop playsinline preload="auto"></video>
           <div class="ps-overlay">
             <div class="ps-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </div>
@@ -517,7 +517,7 @@
           <div class="ps-pause"><span></span><span></span></div>
         </div>
         <div class="ps-slide" id="ps-1">
-          <video class="ps-video" src="/videos/latina2.mp4" muted loop playsinline preload="none"></video>
+          <video class="ps-video" src="/videos/latina2.mp4" muted loop playsinline preload="auto"></video>
           <div class="ps-overlay">
             <div class="ps-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </div>
@@ -528,7 +528,7 @@
           <div class="ps-pause"><span></span><span></span></div>
         </div>
         <div class="ps-slide" id="ps-2">
-          <video class="ps-video" src="/videos/latina3.mp4" muted loop playsinline preload="none"></video>
+          <video class="ps-video" src="/videos/latina3.mp4" muted loop playsinline preload="auto"></video>
           <div class="ps-overlay">
             <div class="ps-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </div>
@@ -539,7 +539,7 @@
           <div class="ps-pause"><span></span><span></span></div>
         </div>
         <div class="ps-slide" id="ps-3">
-          <video class="ps-video" src="/videos/latina4.mp4" muted loop playsinline preload="none"></video>
+          <video class="ps-video" src="/videos/latina4.mp4" muted loop playsinline preload="auto"></video>
           <div class="ps-overlay">
             <div class="ps-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </div>
@@ -550,7 +550,7 @@
           <div class="ps-pause"><span></span><span></span></div>
         </div>
         <div class="ps-slide" id="ps-4">
-          <video class="ps-video" src="/videos/latina5.mp4" muted loop playsinline preload="none"></video>
+          <video class="ps-video" src="/videos/latina5.mp4" muted loop playsinline preload="auto"></video>
           <div class="ps-overlay">
             <div class="ps-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </div>
@@ -561,7 +561,7 @@
           <div class="ps-pause"><span></span><span></span></div>
         </div>
         <div class="ps-slide" id="ps-5">
-          <video class="ps-video" src="/videos/latina6.mp4" muted loop playsinline preload="none"></video>
+          <video class="ps-video" src="/videos/latina6.mp4" muted loop playsinline preload="auto"></video>
           <div class="ps-overlay">
             <div class="ps-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </div>
@@ -595,10 +595,10 @@
   </div>
   <div class="tier-grid">
     <div class="tier-card">
-      <div class="tier-icon">🌿</div>
+      <div class="tier-icon">🌶️</div>
       <div class="tier-name">Basic</div>
       <div class="tier-price">$19<span>.99/one-time</span></div>
-      <p class="tier-desc">Entry channel. 3,000+ exclusive Latina videos. Instant access, no waiting.</p>
+      <p class="tier-desc">Start here. 3,000+ unfiltered Latina videos, one payment, instant Telegram access. No subscriptions, no games.</p>
       <hr class="tier-divider">
       <ul class="tier-feats">
         <li>3,000+ exclusive videos</li>
@@ -607,13 +607,13 @@
         <li>Lifetime access</li>
       </ul>
       <a href="https://mycheckout.live/?tier=latina_basic&return=latinagod.xyz" class="tier-btn tbtn-ghost">Get Access</a>
-      <button class="tier-crypto" data-tier="Basic" data-price="$19.99">₿ Pay with Crypto</button>
+      <button class="tier-crypto" data-tier="Basic" data-price="$19.99">Pay with Crypto</button>
     </div>
     <div class="tier-card featured">
-      <div class="tier-icon">⚡</div>
+      <div class="tier-icon">💎</div>
       <div class="tier-name">Exclusive</div>
       <div class="tier-price">$29<span>.99/one-time</span></div>
-      <p class="tier-desc">More channels, more fire. 5,000+ videos across more creators and more variety.</p>
+      <p class="tier-desc">The smart pick. 5,000+ videos, more creators, daily fresh drops. This is where most members land — and stay.</p>
       <hr class="tier-divider">
       <ul class="tier-feats">
         <li>5,000+ exclusive videos</li>
@@ -622,13 +622,13 @@
         <li>Daily new drops</li>
       </ul>
       <a href="https://mycheckout.live/?tier=latina_exclusive&return=latinagod.xyz" class="tier-btn tbtn-main">Get Access →</a>
-      <button class="tier-crypto" data-tier="Exclusive" data-price="$29.99">₿ Pay with Crypto</button>
+      <button class="tier-crypto" data-tier="Exclusive" data-price="$29.99">Pay with Crypto</button>
     </div>
     <div class="tier-card">
       <div class="tier-icon">👑</div>
       <div class="tier-name">Premium</div>
       <div class="tier-price">$49<span>.99/one-time</span></div>
-      <p class="tier-desc">Full library. 10,000+ videos, every channel unlocked, zero restrictions.</p>
+      <p class="tier-desc">The full vault. 10,000+ videos, every channel, nothing held back. One payment and the whole thing is yours.</p>
       <hr class="tier-divider">
       <ul class="tier-feats">
         <li>10,000+ exclusive videos</li>
@@ -637,7 +637,7 @@
         <li>Priority access + updates</li>
       </ul>
       <a href="https://mycheckout.live/?tier=latina_premium&return=latinagod.xyz" class="tier-btn tbtn-ghost">Get Access</a>
-      <button class="tier-crypto" data-tier="Premium" data-price="$49.99">₿ Pay with Crypto</button>
+      <button class="tier-crypto" data-tier="Premium" data-price="$49.99">Pay with Crypto</button>
     </div>
   </div>
 </section>
@@ -892,6 +892,13 @@ function closeMobileMenu(){
   })();
   psGo(0);
   window.addEventListener('resize',function(){psPosition(psCur);});
+  // Autoplay first slide immediately, muted
+  (function(){
+    var v=slides[0].querySelector('.ps-video');
+    if(!v)return;
+    v.muted=true;
+    v.play().then(function(){slides[0].classList.add('playing');}).catch(function(){});
+  })();
   // ── FAQ ACCORDION ──
   document.querySelectorAll('.faq-q').forEach(function(q){
     q.addEventListener('click',function(){
