@@ -1,642 +1,567 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>OmeTv Accounts — LATINAGOD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
   <style>
-    /* ── TOKENS ─────────────────────────────── */
     :root {
-      --bg:#060606;--surface:#0c0c0c;--card:#111111;--card-hover:#161616;
-      --border:rgba(255,255,255,0.07);--border-hi:rgba(34,197,94,0.40);
-      --text:#f5f5f5;--text-muted:#909090;--text-dim:#444444;
-      --a1:#22c55e;--a2:#16a34a;--a3:#ffffff;
-      --a-glow:rgba(34,197,94,0.13);--a-glow-sm:rgba(34,197,94,0.06);
-      --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;
-      --radius:8px;--radius-sm:5px;--radius-lg:14px;
-      --grad:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);
-      --grad-w:linear-gradient(135deg,#ffffff 0%,#d1fae5 100%);
+      --bg:        #080508;
+      --surface:   #0d080c;
+      --card:      #120a10;
+      --card-hi:   #1a0f18;
+      --border:    rgba(255,255,255,0.07);
+      --border-hi: rgba(225,29,72,0.35);
+      --text:      #f5f0f4;
+      --text-muted:#8a7f88;
+      --text-dim:  #3d3040;
+      --a1:        #e11d48;
+      --a2:        #be123c;
+      --a3:        #ffffff;
+      --a-glow:    rgba(225,29,72,0.14);
+      --a-glow-sm: rgba(225,29,72,0.07);
+      --font:      'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+      --radius:    8px;
+      --radius-sm: 6px;
+      --radius-lg: 14px;
+      --grad:      linear-gradient(135deg,#e11d48 0%,#9f1239 100%);
+      --grad-w:    linear-gradient(135deg,#fda4af 0%,#fff 100%);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{
       background:
-        radial-gradient(ellipse 130% 55% at 50% 0%, rgba(34,197,94,.16) 0%, transparent 52%),
-        radial-gradient(ellipse 70% 35% at 15% 60%, rgba(34,197,94,.07) 0%, transparent 55%),
-        radial-gradient(ellipse 60% 30% at 85% 80%, rgba(34,197,94,.05) 0%, transparent 50%),
-        linear-gradient(180deg, #000000 0%, #050905 18%, #0a1f0d 40%, #050905 68%, #000000 100%);
+        radial-gradient(ellipse 110% 42% at 50% 0%,rgba(225,29,72,.18) 0%,transparent 55%),
+        radial-gradient(ellipse 55% 28% at 10% 55%,rgba(159,18,57,.08) 0%,transparent 55%),
+        radial-gradient(ellipse 50% 25% at 90% 80%,rgba(225,29,72,.05) 0%,transparent 50%),
+        linear-gradient(180deg,#080508 0%,#0d0409 20%,#120a10 45%,#0d0409 70%,#080508 100%);
       background-attachment:fixed;
-      min-height:100vh;color:var(--text);font-family:var(--font);font-size:15px;
-      line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+      min-height:100vh;
+      color:var(--text);
+      font-family:var(--font);
+      font-size:15px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
     a{color:inherit;text-decoration:none;}
     button{cursor:pointer;font-family:var(--font);border:none;background:none;}
 
-    /* ── NAV ── */
+    /* NAV */
     nav{
-      position:sticky;top:0;z-index:90;
-      display:flex;align-items:center;padding:0 28px;gap:14px;height:60px;
-      background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);
-      border-bottom:1px solid var(--border);
+      position:sticky;top:0;z-index:90;height:60px;
+      background:rgba(8,5,8,0.92);backdrop-filter:blur(24px);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      display:flex;align-items:center;padding:0 28px;gap:16px;
     }
     .nav-brand{
       font-size:14px;font-weight:900;letter-spacing:.1em;
-      text-transform:uppercase;color:var(--text);white-space:nowrap;margin-right:auto;
-    }
-    .nav-brand span{
+      text-transform:uppercase;color:var(--text);
       background:var(--grad-w);-webkit-background-clip:text;
       -webkit-text-fill-color:transparent;background-clip:text;
     }
+    .nav-right{display:flex;align-items:center;gap:10px;margin-left:auto;}
     .nav-tg{
-      display:flex;align-items:center;gap:7px;padding:8px 14px;
-      border-radius:var(--radius);background:var(--a-glow-sm);
-      border:1px solid rgba(34,197,94,.15);color:var(--text-muted);
-      font-size:12px;font-weight:700;letter-spacing:.02em;
-      transition:background .15s,border-color .15s,color .15s;
+      display:flex;align-items:center;gap:7px;
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+      border-radius:var(--radius-sm);padding:7px 14px;font-size:12.5px;font-weight:600;
+      color:var(--text-muted);transition:color .2s,border-color .2s;
     }
-    .nav-tg:hover{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.34);color:var(--text);}
+    .nav-tg:hover{color:var(--a3);border-color:rgba(225,29,72,.3);}
     .nav-back{
-      padding:8px 14px;border-radius:var(--radius);
-      border:1px solid var(--border-hi);color:var(--text-muted);
-      font-size:12px;font-weight:700;
-      transition:color .15s,border-color .15s;
+      background:var(--grad);color:#fff;padding:7px 16px;
+      border-radius:var(--radius-sm);font-size:12.5px;font-weight:800;
+      box-shadow:0 0 18px rgba(225,29,72,.22);transition:opacity .2s;
     }
-    .nav-back:hover{color:var(--text);border-color:rgba(34,197,94,.44);}
+    .nav-back:hover{opacity:.88;}
 
-    /* ── PAGE ── */
-    .page{max-width:1060px;margin:0 auto;padding:60px 24px 80px;}
+    /* PAGE WRAPPER */
+    .page{max-width:1100px;margin:0 auto;padding:72px 32px 100px;}
 
-    /* ── PAGE HEADER ── */
-    .page-header{text-align:center;margin-bottom:52px;}
+    /* HEADER */
+    .page-header{text-align:center;margin-bottom:64px;}
     .page-eyebrow{
-      font-size:10px;font-weight:800;letter-spacing:.18em;
-      text-transform:uppercase;color:var(--a1);margin-bottom:14px;
+      font-size:10.5px;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--a1);margin-bottom:18px;
     }
     .page-title{
-      font-size:clamp(1.9rem,5vw,2.9rem);font-weight:900;letter-spacing:-.03em;
-      line-height:1.1;color:var(--text);margin-bottom:16px;text-wrap:balance;
+      font-size:clamp(2.4rem,6vw,4rem);font-weight:900;
+      letter-spacing:-.045em;line-height:1.05;color:var(--text);
+      margin-bottom:14px;text-wrap:balance;
     }
     .page-title em{
-      font-style:normal;background:var(--grad);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      font-style:italic;
+      background:var(--grad);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;
     }
-    .page-sub{
-      font-size:1rem;color:var(--text-muted);max-width:500px;
-      margin:0 auto;line-height:1.65;
-    }
+    .page-sub{font-size:1rem;color:var(--text-muted);max-width:460px;margin:0 auto;line-height:1.65;}
 
-    /* ── BUNDLE CARD ── */
+    /* BUNDLE CARD */
     .bundle-card{
-      background:var(--card);border:1px solid rgba(34,197,94,.18);
-      border-radius:16px;padding:38px 40px;margin-bottom:40px;
-      position:relative;overflow:hidden;
+      background:var(--card);border:1px solid var(--a1);
+      border-radius:var(--radius-lg);padding:36px;
+      box-shadow:0 0 64px rgba(225,29,72,.1),inset 0 0 0 1px rgba(225,29,72,.04);
+      margin-bottom:40px;
+      background:linear-gradient(160deg,rgba(225,29,72,.05) 0%,var(--card) 55%);
     }
-    .bundle-card::before{
-      content:'';position:absolute;top:0;left:0;right:0;height:1px;
-      background:linear-gradient(90deg,transparent 0%,rgba(34,197,94,.45) 35%,rgba(34,197,94,.45) 65%,transparent 100%);
-    }
-    .bundle-inner{
-      display:grid;grid-template-columns:1fr auto;gap:52px;align-items:center;
-    }
+    .bundle-inner{display:flex;align-items:flex-start;gap:40px;}
+    .bundle-left{flex:1;min-width:0;}
     .bundle-badge{
-      display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
-      border-radius:100px;background:var(--a-glow-sm);
-      border:1px solid rgba(34,197,94,.2);font-size:10px;font-weight:800;
-      letter-spacing:.12em;text-transform:uppercase;color:var(--a1);margin-bottom:14px;
+      display:inline-flex;align-items:center;gap:7px;
+      background:var(--a-glow);border:1px solid var(--border-hi);
+      border-radius:100px;padding:5px 14px;font-size:10px;font-weight:700;
+      letter-spacing:.1em;text-transform:uppercase;color:var(--a1);
+      margin-bottom:18px;
     }
     .bundle-name{
-      font-size:1.4rem;font-weight:900;letter-spacing:-.025em;
-      color:var(--text);margin-bottom:5px;
+      font-size:1.7rem;font-weight:900;letter-spacing:-.04em;
+      color:var(--text);margin-bottom:8px;
     }
-    .bundle-tagline{font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.5;}
-    .bundle-features{display:flex;flex-direction:column;gap:10px;}
+    .bundle-tagline{font-size:13.5px;color:var(--text-muted);margin-bottom:22px;line-height:1.6;}
+    .bundle-feats{list-style:none;display:flex;flex-direction:column;gap:10px;}
     .bundle-feat{
-      display:flex;align-items:flex-start;gap:10px;font-size:13px;
-      color:rgba(245,245,245,.68);line-height:1.5;
+      display:flex;align-items:center;gap:10px;
+      font-size:13.5px;color:var(--text-muted);
     }
-    .bundle-feat-check{color:var(--a1);flex-shrink:0;margin-top:1px;font-weight:700;}
-    .bundle-feat strong{color:var(--text);font-weight:700;}
-
-    .bundle-right{text-align:center;min-width:260px;}
-    .bundle-prices{
-      display:flex;align-items:baseline;justify-content:center;
-      gap:10px;margin-bottom:4px;
+    .bundle-feat strong{color:var(--text);font-weight:600;}
+    .bundle-feat::before{
+      content:'';flex-shrink:0;width:18px;height:18px;border-radius:50%;
+      background:rgba(225,29,72,.1);border:1px solid rgba(225,29,72,.28);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23e11d48' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:center;background-size:10px;
+    }
+    .bundle-right{
+      flex-shrink:0;display:flex;flex-direction:column;
+      align-items:center;text-align:center;min-width:200px;
     }
     .bundle-was{
-      font-size:1.2rem;font-weight:700;
-      color:var(--text-dim);text-decoration:line-through;
+      font-size:15px;font-weight:600;color:var(--text-dim);
+      text-decoration:line-through;margin-bottom:4px;
     }
     .bundle-now{
-      font-size:3.1rem;font-weight:900;letter-spacing:-.04em;
-      color:var(--text);line-height:1;
+      font-size:3.4rem;font-weight:900;letter-spacing:-.05em;
+      color:var(--text);line-height:1;margin-bottom:6px;
     }
-    .bundle-note{font-size:12px;color:var(--text-muted);margin-bottom:6px;}
+    .bundle-note{font-size:11.5px;color:var(--text-muted);margin-bottom:12px;}
     .bundle-save-pill{
-      display:inline-block;padding:3px 11px;border-radius:100px;
-      background:var(--a-glow-sm);border:1px solid rgba(34,197,94,.22);
-      font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-      color:var(--a1);margin-bottom:20px;
+      display:inline-block;background:rgba(225,29,72,.12);
+      border:1px solid rgba(225,29,72,.28);border-radius:100px;
+      padding:4px 14px;font-size:11px;font-weight:700;letter-spacing:.05em;
+      text-transform:uppercase;color:var(--a1);margin-bottom:18px;
     }
     .bundle-cta{
-      display:flex;align-items:center;justify-content:center;gap:8px;
-      width:100%;padding:16px 20px;border-radius:var(--radius);
-      background:var(--grad);color:#fff;font-size:14px;font-weight:900;
-      letter-spacing:.01em;text-decoration:none;
-      transition:opacity .18s,transform .15s;
-      box-shadow:0 0 28px rgba(34,197,94,.26);
+      display:block;width:100%;text-align:center;
+      background:var(--grad);color:#fff;padding:14px 22px;
+      border-radius:var(--radius-sm);font-size:14px;font-weight:800;
+      letter-spacing:.02em;box-shadow:0 0 28px rgba(225,29,72,.28);
+      transition:opacity .2s,box-shadow .2s;margin-bottom:10px;
     }
-    .bundle-cta:hover{opacity:.88;transform:translateY(-1px);}
+    .bundle-cta:hover{opacity:.9;box-shadow:0 0 44px rgba(225,29,72,.42);}
     .bundle-crypto{
-      display:block;width:100%;text-align:center;padding:11px 20px;
-      border-radius:var(--radius);margin-top:9px;font-size:13px;font-weight:700;
-      background:var(--a-glow-sm);border:1px solid rgba(34,197,94,.15);
-      color:var(--text-muted);cursor:pointer;letter-spacing:.02em;
-      transition:background .2s,border-color .2s,color .2s;font-family:var(--font);
+      display:block;width:100%;text-align:center;
+      padding:10px 22px;border-radius:var(--radius-sm);
+      font-size:12.5px;font-weight:700;
+      background:rgba(225,29,72,.04);border:1px solid rgba(225,29,72,.14);
+      color:var(--text-muted);transition:all .2s;cursor:pointer;
     }
-    .bundle-crypto:hover{background:rgba(34,197,94,.11);border-color:rgba(34,197,94,.32);color:var(--text);}
+    .bundle-crypto:hover{background:rgba(225,29,72,.1);border-color:rgba(225,29,72,.3);color:var(--text);}
 
-    /* ── OR DIVIDER ── */
+    /* OR DIVIDER */
     .or-label{
-      text-align:center;font-size:10px;font-weight:800;letter-spacing:.18em;
-      text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;
-      display:flex;align-items:center;gap:14px;
+      display:flex;align-items:center;gap:18px;
+      font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--text-dim);margin-bottom:32px;
     }
-    .or-label::before,.or-label::after{content:'';flex:1;height:1px;background:var(--border);}
+    .or-label::before,.or-label::after{
+      content:'';flex:1;height:1px;background:var(--border);
+    }
 
-    /* ── GUIDES GRID ── */
-    .guides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-
+    /* GUIDES GRID */
+    .guides-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:16px;margin-bottom:80px;
+    }
     .guide-card{
       background:var(--card);border:1px solid var(--border);
-      border-radius:var(--radius-lg);padding:28px 22px;
+      border-radius:var(--radius-lg);padding:28px 24px;
       display:flex;flex-direction:column;
-      transition:border-color .2s,transform .2s;
+      transition:border-color .25s,background .25s;
     }
-    .guide-card:hover{border-color:rgba(34,197,94,.26);transform:translateY(-2px);}
-
+    .guide-card:hover{background:var(--card-hi);border-color:rgba(225,29,72,.2);}
     .guide-name{
-      font-size:13px;font-weight:900;letter-spacing:.08em;
-      text-transform:uppercase;color:var(--text);margin-bottom:5px;
+      font-size:14px;font-weight:700;letter-spacing:.04em;
+      text-transform:uppercase;color:var(--a1);margin-bottom:6px;
     }
-    .guide-desc{font-size:12px;color:var(--text-muted);margin-bottom:16px;line-height:1.5;}
+    .guide-desc{font-size:13px;color:var(--text-muted);margin-bottom:18px;line-height:1.5;}
     .guide-price-row{
-      display:flex;align-items:baseline;gap:1px;margin-bottom:3px;
+      display:flex;align-items:baseline;gap:8px;margin-bottom:4px;
     }
-    .guide-dollar{font-size:1.1rem;font-weight:800;color:var(--text);line-height:1;}
-    .guide-amount{
-      font-size:2.2rem;font-weight:900;letter-spacing:-.04em;
-      color:var(--text);line-height:1;
+    .guide-price{
+      font-size:2.4rem;font-weight:900;letter-spacing:-.05em;color:var(--text);line-height:1;
     }
-    .guide-price-note{font-size:11px;color:var(--text-dim);margin-bottom:16px;}
-
+    .guide-price-note{
+      font-size:10.5px;font-weight:600;letter-spacing:.06em;
+      text-transform:uppercase;color:var(--text-dim);margin-bottom:16px;
+    }
     .guide-stats{
-      display:grid;grid-template-columns:repeat(3,1fr);
-      gap:6px;margin-bottom:16px;
+      display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;
     }
-    .stat{
-      background:var(--card-hover);border:1px solid var(--border);
-      border-radius:6px;padding:9px 6px;text-align:center;
+    .guide-stat{
+      background:rgba(255,255,255,.04);border:1px solid var(--border);
+      border-radius:var(--radius-sm);padding:5px 10px;
+      font-size:10.5px;font-weight:600;color:var(--text-muted);
+      white-space:nowrap;
     }
-    .stat-val{
-      display:block;font-size:13px;font-weight:800;
-      color:var(--text);letter-spacing:-.01em;margin-bottom:3px;
-    }
-    .stat-lbl{
-      display:block;font-size:9px;font-weight:600;
-      color:var(--text-muted);letter-spacing:.02em;
-    }
-
-    .guide-features{
-      flex:1;display:flex;flex-direction:column;
-      gap:8px;margin-bottom:18px;
-    }
+    .guide-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;flex:1;}
     .guide-feat{
-      display:flex;align-items:flex-start;gap:8px;
-      font-size:12.5px;color:rgba(245,245,245,.62);line-height:1.45;
+      display:flex;align-items:flex-start;gap:9px;
+      font-size:12.5px;color:var(--text-muted);line-height:1.5;
     }
-    .feat-check{color:var(--a1);flex-shrink:0;font-weight:700;margin-top:1px;font-size:13px;}
-
+    .guide-feat::before{
+      content:'';flex-shrink:0;margin-top:2px;width:16px;height:16px;border-radius:50%;
+      background:rgba(225,29,72,.08);border:1px solid rgba(225,29,72,.22);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23e11d48' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:center;background-size:9px;
+    }
     .guide-cta{
-      display:flex;align-items:center;justify-content:center;gap:7px;
-      width:100%;padding:13px 16px;border-radius:var(--radius);
-      background:var(--a-glow-sm);border:1px solid rgba(34,197,94,.2);
-      color:var(--text);font-size:13px;font-weight:800;letter-spacing:.01em;
-      text-decoration:none;transition:background .18s,border-color .18s,transform .15s;
+      display:block;width:100%;text-align:center;
+      padding:13px 18px;border-radius:var(--radius-sm);
+      font-size:13.5px;font-weight:800;letter-spacing:.02em;
+      background:transparent;color:var(--text);
+      border:1.5px solid rgba(255,255,255,.1);margin-bottom:10px;
+      transition:border-color .2s,color .2s;
     }
-    .guide-cta:hover{background:rgba(34,197,94,.16);border-color:rgba(34,197,94,.38);transform:translateY(-1px);}
+    .guide-cta:hover{border-color:rgba(225,29,72,.36);color:var(--a3);}
     .guide-crypto{
-      display:block;width:100%;text-align:center;padding:10px 16px;
-      border-radius:var(--radius);margin-top:8px;font-size:12px;font-weight:700;
-      background:transparent;border:1px solid rgba(34,197,94,.12);
-      color:var(--text-muted);cursor:pointer;letter-spacing:.02em;
-      transition:background .2s,border-color .2s,color .2s;font-family:var(--font);
+      display:block;width:100%;text-align:center;
+      padding:9px 18px;border-radius:var(--radius-sm);
+      font-size:12px;font-weight:700;
+      background:rgba(225,29,72,.04);border:1px solid rgba(225,29,72,.1);
+      color:var(--text-muted);transition:all .2s;cursor:pointer;
     }
-    .guide-crypto:hover{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.28);color:var(--text);}
+    .guide-crypto:hover{background:rgba(225,29,72,.1);border-color:rgba(225,29,72,.28);color:var(--text);}
 
-    /* ── REVIEWS ── */
-    .reviews-section{
-      margin-top:64px;padding-top:64px;
-      border-top:1px solid var(--border);
-    }
+    /* REVIEWS */
+    .reviews-section{margin-bottom:80px;}
     .reviews-label{
-      font-size:10px;font-weight:700;letter-spacing:.1em;
-      text-transform:uppercase;color:var(--a1);margin-bottom:10px;text-align:center;
+      font-size:10.5px;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--a1);
+      text-align:center;margin-bottom:10px;
     }
     .reviews-title{
-      font-size:clamp(1.4rem,3vw,2rem);font-weight:800;letter-spacing:-.03em;
-      color:var(--text);margin-bottom:36px;text-align:center;
+      font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;
+      letter-spacing:-.04em;color:var(--text);
+      text-align:center;margin-bottom:36px;text-wrap:balance;
     }
     .review-grid{
       display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
     }
     .review-card{
       background:var(--card);border:1px solid var(--border);
-      border-radius:var(--radius-lg);padding:24px 22px;
-      display:flex;flex-direction:column;gap:18px;
+      border-radius:var(--radius-lg);padding:24px;
     }
-    .review-text{font-size:13.5px;line-height:1.7;color:var(--text);flex:1;}
-    .review-author{display:flex;align-items:center;gap:11px;}
+    .review-text{
+      font-size:13.5px;color:var(--text-muted);
+      line-height:1.65;margin-bottom:18px;
+    }
+    .review-author{display:flex;align-items:center;gap:10px;}
     .review-avatar{
-      width:36px;height:36px;border-radius:50%;
-      background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);
-      display:flex;align-items:center;justify-content:center;
-      font-size:11px;font-weight:800;color:var(--a1);flex-shrink:0;
+      width:32px;height:32px;border-radius:50%;flex-shrink:0;
+      background:var(--grad);display:flex;align-items:center;justify-content:center;
+      font-size:12px;font-weight:800;color:#fff;
     }
-    .review-name{font-size:13px;font-weight:700;color:var(--text);}
-    .review-tag{font-size:11px;color:var(--text-dim);margin-top:1px;}
+    .review-name{font-size:12.5px;font-weight:700;color:var(--text);}
+    .review-tag{font-size:11px;color:var(--text-dim);}
 
-    /* ── MG STRIP ── */
+    /* MG STRIP */
     .mg-strip{
-      display:flex;align-items:center;justify-content:space-between;gap:24px;
-      background:rgba(0,0,0,.7);border:1px solid var(--border);
-      border-radius:var(--radius-lg);padding:24px 30px;margin-top:40px;flex-wrap:wrap;
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--radius-lg);padding:32px 36px;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:24px;margin-bottom:80px;
     }
-    .mg-left{flex:1;min-width:200px;}
     .mg-label{
-      font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-      color:var(--a1);margin-bottom:5px;opacity:.7;
+      font-size:10px;font-weight:700;letter-spacing:.13em;
+      text-transform:uppercase;color:var(--a1);margin-bottom:6px;
     }
-    .mg-title{font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-.015em;margin-bottom:4px;}
-    .mg-sub{font-size:12.5px;color:var(--text-muted);line-height:1.55;}
+    .mg-title{font-size:1.2rem;font-weight:800;letter-spacing:-.02em;color:var(--text);margin-bottom:5px;}
+    .mg-sub{font-size:13px;color:var(--text-muted);}
     .mg-btn{
-      flex-shrink:0;padding:12px 24px;border-radius:var(--radius);
-      background:var(--grad);color:#fff;font-size:13px;font-weight:800;
-      letter-spacing:.02em;text-decoration:none;
-      transition:opacity .18s,transform .15s;white-space:nowrap;
-      box-shadow:0 0 20px rgba(34,197,94,.2);
+      flex-shrink:0;background:var(--grad);color:#fff;padding:12px 24px;
+      border-radius:var(--radius-sm);font-size:13px;font-weight:800;
+      white-space:nowrap;box-shadow:0 0 20px rgba(225,29,72,.22);
+      transition:opacity .2s,box-shadow .2s;
     }
-    .mg-btn:hover{opacity:.88;transform:translateY(-1px);}
+    .mg-btn:hover{opacity:.88;box-shadow:0 0 32px rgba(225,29,72,.36);}
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     .page-footer{
-      text-align:center;padding:28px 24px 14px;
-      border-top:1px solid var(--border);margin-top:56px;
+      border-top:1px solid var(--border);padding-top:28px;
+      display:flex;align-items:center;justify-content:center;
+      flex-wrap:wrap;gap:18px;
     }
-    .page-footer a{
-      font-size:11px;color:var(--text-dim);text-decoration:none;
-      margin:0 9px;transition:color .15s;
-    }
+    .page-footer a{font-size:12px;color:var(--text-dim);transition:color .2s;font-weight:500;}
     .page-footer a:hover{color:var(--text-muted);}
 
-    /* ── CRYPTO MODAL ── */
-    .cr-overlay{position:fixed;inset:0;z-index:300;
-      background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
-      display:none;align-items:center;justify-content:center;padding:16px;}
+    /* CRYPTO MODAL */
+    .cr-overlay{
+      position:fixed;inset:0;z-index:300;
+      background:rgba(0,0,0,.78);backdrop-filter:blur(8px);
+      display:none;align-items:center;justify-content:center;padding:16px;
+    }
     .cr-overlay.show{display:flex;}
-    .cr-modal{position:relative;background:var(--card);
-      border:1px solid rgba(34,197,94,.24);border-radius:var(--radius-lg);
+    .cr-modal{
+      position:relative;background:var(--card);
+      border:1px solid rgba(225,29,72,.22);border-radius:var(--radius-lg);
       padding:36px 28px;max-width:450px;width:100%;
-      box-shadow:0 32px 90px rgba(0,0,0,.65);}
-    .cr-close{position:absolute;top:14px;right:14px;
-      width:30px;height:30px;border-radius:8px;
-      background:rgba(255,255,255,.06);border:none;
-      color:var(--text-muted);font-size:.9rem;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;
-      transition:background .2s,color .2s;}
-    .cr-close:hover{background:rgba(34,197,94,.16);color:var(--text);}
-    .cr-title{font-size:1.25rem;font-weight:800;letter-spacing:-.02em;
-      color:var(--text);margin-bottom:6px;text-align:left;}
-    .cr-sub{font-size:13px;color:var(--text-muted);margin-bottom:22px;
-      line-height:1.55;text-align:left;}
-    .cr-sub b{color:var(--a3);}
+    }
+    .cr-close{
+      position:absolute;top:16px;right:16px;
+      font-size:18px;color:var(--text-muted);background:none;border:none;
+      cursor:pointer;transition:color .2s;
+    }
+    .cr-close:hover{color:var(--text);}
+    .cr-title{font-size:1.2rem;font-weight:800;letter-spacing:-.02em;color:var(--text);margin-bottom:8px;}
+    .cr-sub{font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.6;}
     .cr-list{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;}
-    .cr-row{background:var(--a-glow-sm);border:1px solid var(--border);
-      border-radius:var(--radius);padding:13px 15px;
-      display:grid;grid-template-columns:auto 1fr auto;
-      align-items:center;gap:10px;text-align:left;}
-    .cr-coin-info{}
-    .cr-coin{font-size:13px;font-weight:800;color:var(--text);}
-    .cr-label{font-size:11px;color:var(--text-muted);font-weight:500;margin-top:1px;}
-    .cr-addr{font-size:10.5px;color:var(--text-dim);font-family:monospace;
-      overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-      max-width:160px;margin-top:3px;}
-    .cr-copy{font-size:10px;font-weight:800;padding:6px 11px;
-      background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.22);
-      border-radius:6px;color:var(--a1);cursor:pointer;white-space:nowrap;
-      font-family:var(--font);transition:background .15s,border-color .15s,color .15s;}
-    .cr-copy:hover{background:rgba(34,197,94,.2);border-color:var(--a1);}
-    .cr-copy.copied{background:rgba(34,197,94,.28);border-color:var(--a1);color:#fff;}
-    .cr-admin{display:flex;align-items:center;justify-content:center;gap:8px;
-      width:100%;padding:12px 20px;border-radius:var(--radius-sm);
-      background:var(--grad);color:#fff;font-size:13px;font-weight:800;
-      margin-bottom:14px;transition:opacity .2s;text-decoration:none;
-      box-shadow:0 0 18px rgba(34,197,94,.2);}
-    .cr-admin:hover{opacity:.88;}
-    .cr-fine{font-size:10.5px;color:var(--text-dim);text-align:center;line-height:1.65;}
-    .cr-empty{text-align:center;padding:20px 0;font-size:13px;color:var(--text-muted);line-height:1.6;}
+    .cr-empty{font-size:13px;color:var(--text-dim);padding:12px 0;}
+    .cr-row{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      background:rgba(255,255,255,.03);border:1px solid var(--border);
+      border-radius:var(--radius);padding:12px 14px;
+    }
+    .cr-coin{font-size:13px;font-weight:700;color:var(--text);}
+    .cr-label{font-size:11px;color:var(--text-dim);margin-top:2px;}
+    .cr-addr{font-size:10.5px;color:var(--text-muted);margin-top:4px;word-break:break-all;}
+    .cr-copy{
+      flex-shrink:0;background:rgba(225,29,72,.1);border:1px solid rgba(225,29,72,.26);
+      color:var(--a1);font-size:10px;font-weight:700;letter-spacing:.08em;
+      padding:5px 12px;border-radius:4px;cursor:pointer;transition:all .2s;font-family:var(--font);
+    }
+    .cr-copy.copied{background:rgba(225,29,72,.22);color:#fff;}
+    .cr-admin{
+      display:block;text-align:center;padding:11px 18px;border-radius:var(--radius-sm);
+      font-size:13px;font-weight:700;background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);color:var(--text-muted);
+      margin-bottom:12px;transition:all .2s;
+    }
+    .cr-admin:hover{border-color:rgba(225,29,72,.24);color:var(--text);}
+    .cr-fine{font-size:11px;color:var(--text-dim);text-align:center;line-height:1.6;}
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:900px){
-      .bundle-inner{grid-template-columns:1fr;gap:28px;}
-      .bundle-right{text-align:left;}
-      .bundle-prices{justify-content:flex-start;}
-    }
-    @media(max-width:760px){
+    /* RESPONSIVE */
+    @media(max-width:860px){
+      .bundle-inner{flex-direction:column;}
+      .bundle-right{width:100%;min-width:unset;}
       .guides-grid{grid-template-columns:1fr;}
-      .page{padding:36px 16px 60px;}
-      .bundle-card{padding:26px 22px;}
-      nav{padding:12px 18px;}
-      .mg-strip{flex-direction:column;text-align:center;}
-      .review-grid{grid-template-columns:1fr 1fr;}
-    }
-    @media(max-width:500px){
       .review-grid{grid-template-columns:1fr;}
+      .mg-strip{flex-direction:column;text-align:center;}
+    }
+    @media(max-width:560px){
+      .page{padding:48px 18px 80px;}
     }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
 <nav>
-  <a href="/" class="nav-brand"><span>LATINA</span>GOD</a>
-  <a href="https://t.me/killsaints" target="_blank" rel="noopener" class="nav-tg">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.014 9.49c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.08 14.4l-2.95-.924c-.642-.2-.654-.642.136-.953l11.527-4.447c.535-.194 1.003.13.769.172z"/>
-    </svg>
-    Telegram
-  </a>
-  <a href="/" class="nav-back">← Back</a>
+  <div class="nav-brand">LATINAGOD</div>
+  <div class="nav-right">
+    <a href="https://t.me/killsaints" target="_blank" rel="noopener" class="nav-tg">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Telegram
+    </a>
+    <a href="/" class="nav-back">← Back</a>
+  </div>
 </nav>
 
-<!-- ── PAGE ── -->
 <div class="page">
 
-  <!-- Header -->
+  <!-- HEADER -->
   <div class="page-header">
-    <div class="page-eyebrow">Monkey App / OmeTV Accounts</div>
+    <div class="page-eyebrow">Monkey App / OmeTv Accounts</div>
     <h1 class="page-title">Stop getting skipped.<br><em>Start winning every session.</em></h1>
     <p class="page-sub">Three methods. One system. Instant PDF download — start implementing in minutes.</p>
   </div>
 
-  <!-- Bundle card -->
+  <!-- BUNDLE CARD -->
   <div class="bundle-card">
     <div class="bundle-inner">
-      <div>
+      <div class="bundle-left">
         <div class="bundle-badge">⚡ Best Value — All Three Guides</div>
         <div class="bundle-name">All-In-One Bundle</div>
-        <div class="bundle-tagline">Everything in one PDF. Updated when the methods update.</div>
-        <div class="bundle-features">
-          <div class="bundle-feat">
-            <span class="bundle-feat-check">✓</span>
-            <span><strong>Girls Only Method</strong> — Gender filter — 95%+ female matches</span>
-          </div>
-          <div class="bundle-feat">
-            <span class="bundle-feat-check">✓</span>
-            <span><strong>Get Wins Method</strong> — The complete six-component system</span>
-          </div>
-          <div class="bundle-feat">
-            <span class="bundle-feat-check">✓</span>
-            <span><strong>No Ban Method</strong> — Complete ban avoidance + unban</span>
-          </div>
-          <div class="bundle-feat">
-            <span class="bundle-feat-check">✓</span>
-            <span>Every future update to all three, free</span>
-          </div>
-          <div class="bundle-feat">
-            <span class="bundle-feat-check">✓</span>
-            <span>Cheaper than buying any two separately</span>
-          </div>
-        </div>
+        <p class="bundle-tagline">Everything in one PDF. Updated when the methods update.</p>
+        <ul class="bundle-feats">
+          <li class="bundle-feat"><strong>Girls Only Method</strong> — Gender filter — 95%+ female matches</li>
+          <li class="bundle-feat"><strong>Get Wins Method</strong> — The complete six-component system</li>
+          <li class="bundle-feat"><strong>No Ban Method</strong> — Complete ban avoidance + unban</li>
+          <li class="bundle-feat">Every future update to all three, free</li>
+          <li class="bundle-feat">Cheaper than buying any two separately</li>
+        </ul>
       </div>
-
       <div class="bundle-right">
-        <div class="bundle-prices">
-          <span class="bundle-was">$79.97</span>
-          <span class="bundle-now">$49.99</span>
-        </div>
+        <div class="bundle-was">$79.97</div>
+        <div class="bundle-now">$49.99</div>
         <div class="bundle-note">One payment for everything</div>
         <div class="bundle-save-pill">Save $29.98</div>
-        <a class="bundle-cta" href="https://mycheckout.live/?tier=all_in_one&return=latinagod.xyz">Get all three — $49.99</a>
+        <a href="https://mycheckout.live/?tier=all_in_one&return=latinagod.xyz" class="bundle-cta">Get all three — $49.99</a>
         <button class="bundle-crypto" data-tier="All-In-One Bundle" data-price="$49.99">₿ Pay with Crypto</button>
       </div>
     </div>
   </div>
 
-  <!-- Divider -->
+  <!-- OR DIVIDER -->
   <div class="or-label">Or buy individually</div>
 
-  <!-- Guides grid -->
+  <!-- GUIDES GRID -->
   <div class="guides-grid">
 
-    <!-- Girls Only -->
+    <!-- GIRLS ONLY -->
     <div class="guide-card">
       <div class="guide-name">Girls Only</div>
-      <div class="guide-desc">Gender filter — 95%+ female matches</div>
+      <p class="guide-desc">Gender filter — 95%+ female matches</p>
       <div class="guide-price-row">
-        <span class="guide-dollar">$</span>
-        <span class="guide-amount">29.99</span>
+        <div class="guide-price">$29.99</div>
       </div>
-      <div class="guide-price-note">One-time · instant access</div>
+      <div class="guide-price-note">One-time · Instant download</div>
       <div class="guide-stats">
-        <div class="stat">
-          <span class="stat-val">95%+</span>
-          <span class="stat-lbl">female matches</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val">&lt;2 min</span>
-          <span class="stat-lbl">to set up</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val">All</span>
-          <span class="stat-lbl">devices</span>
-        </div>
+        <span class="guide-stat">95%+ female matches</span>
+        <span class="guide-stat">&lt;2 min to set up</span>
+        <span class="guide-stat">All devices</span>
       </div>
-      <div class="guide-features">
-        <div class="guide-feat"><span class="feat-check">→</span><span>Exact filter settings that force female matches</span></div>
-        <div class="guide-feat"><span class="feat-check">→</span><span>Works on OmeTV, Monkey App, and alternatives</span></div>
-        <div class="guide-feat"><span class="feat-check">→</span><span>Setup takes under 2 minutes per platform</span></div>
-        <div class="guide-feat"><span class="feat-check">→</span><span>Updated when platforms change their filter logic</span></div>
-      </div>
-      <a class="guide-cta" href="https://mycheckout.live/?tier=girls_only&return=latinagod.xyz">Get Girls Only — $29.99</a>
+      <ul class="guide-feats">
+        <li class="guide-feat">Exact filter settings for female matches</li>
+        <li class="guide-feat">Works on OmeTV, Monkey App, alternatives</li>
+        <li class="guide-feat">Setup under 2 minutes</li>
+        <li class="guide-feat">Updated when platforms change filter logic</li>
+      </ul>
+      <a href="https://mycheckout.live/?tier=girls_only&return=latinagod.xyz" class="guide-cta">Get Girls Only — $29.99</a>
       <button class="guide-crypto" data-tier="Girls Only" data-price="$29.99">₿ Pay with Crypto</button>
     </div>
 
-    <!-- Get Wins -->
+    <!-- GET WINS -->
     <div class="guide-card">
       <div class="guide-name">Get Wins</div>
-      <div class="guide-desc">The complete six-component system</div>
+      <p class="guide-desc">The complete six-component system</p>
       <div class="guide-price-row">
-        <span class="guide-dollar">$</span>
-        <span class="guide-amount">29.99</span>
+        <div class="guide-price">$29.99</div>
       </div>
-      <div class="guide-price-note">One-time · instant access</div>
+      <div class="guide-price-note">One-time · Instant download</div>
       <div class="guide-stats">
-        <div class="stat">
-          <span class="stat-val">6</span>
-          <span class="stat-lbl">components</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val">3–5x</span>
-          <span class="stat-lbl">peak output</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val">24/7</span>
-          <span class="stat-lbl">operation</span>
-        </div>
+        <span class="guide-stat">6 components</span>
+        <span class="guide-stat">3–5x peak output</span>
+        <span class="guide-stat">24/7 operation</span>
       </div>
-      <div class="guide-features">
-        <div class="guide-feat"><span class="feat-check">→</span><span>All six components and how they multiply output</span></div>
-        <div class="guide-feat"><span class="feat-check">→</span><span>Lighting, framing, and camera setup breakdown</span></div>
-        <div class="guide-feat"><span class="feat-check">→</span><span>Timing windows that push match rate 3–5x</span></div>
-        <div class="guide-feat"><span class="feat-check">→</span><span>The exact openers that get responses</span></div>
-      </div>
-      <a class="guide-cta" href="https://mycheckout.live/?tier=get_wins&return=latinagod.xyz">Get Wins — $29.99</a>
+      <ul class="guide-feats">
+        <li class="guide-feat">All six components and output multiplication</li>
+        <li class="guide-feat">Lighting, framing, camera setup</li>
+        <li class="guide-feat">Timing windows for 3–5x match rate</li>
+        <li class="guide-feat">Exact openers that get responses</li>
+      </ul>
+      <a href="https://mycheckout.live/?tier=get_wins&return=latinagod.xyz" class="guide-cta">Get Get Wins — $29.99</a>
       <button class="guide-crypto" data-tier="Get Wins" data-price="$29.99">₿ Pay with Crypto</button>
     </div>
 
-    <!-- No Ban -->
+    <!-- NO BAN -->
     <div class="guide-card">
       <div class="guide-name">No Ban</div>
-      <div class="guide-desc">Complete ban avoidance + unban</div>
+      <p class="guide-desc">Complete ban avoidance + unban</p>
       <div class="guide-price-row">
-        <span class="guide-dollar">$</span>
-        <span class="guide-amount">19.99</span>
+        <div class="guide-price">$19.99</div>
       </div>
-      <div class="guide-price-note">One-time · instant access</div>
+      <div class="guide-price-note">One-time · Instant download</div>
       <div class="guide-stats">
-        <div class="stat">
-          <span class="stat-val">60s</span>
-          <span class="stat-lbl">ban recovery</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val">IP-only</span>
-          <span class="stat-lbl">ban system</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val">3</span>
-          <span class="stat-lbl">platforms</span>
-        </div>
+        <span class="guide-stat">60s ban recovery</span>
+        <span class="guide-stat">IP-only ban system</span>
+        <span class="guide-stat">3 platforms</span>
       </div>
-      <div class="guide-features">
-        <div class="guide-feat"><span class="feat-check">→</span><span>Why bans are IP-only — and what that means for you</span></div>
-        <div class="guide-feat"><span class="feat-check">→</span><span>Exact unban method for OmeTV, Monkey, Ome.tv</span></div>
-        <div class="guide-feat"><span class="feat-check">→</span><span>Behavior rules that prevent bans in the first place</span></div>
-        <div class="guide-feat"><span class="feat-check">→</span><span>Recovery takes 60 seconds or less</span></div>
-      </div>
-      <a class="guide-cta" href="https://mycheckout.live/?tier=no_ban&return=latinagod.xyz">No Ban — $19.99</a>
+      <ul class="guide-feats">
+        <li class="guide-feat">Why bans are IP-only</li>
+        <li class="guide-feat">Exact unban method for three platforms</li>
+        <li class="guide-feat">Behavior rules preventing bans</li>
+        <li class="guide-feat">60-second recovery</li>
+      </ul>
+      <a href="https://mycheckout.live/?tier=no_ban&return=latinagod.xyz" class="guide-cta">Get No Ban — $19.99</a>
       <button class="guide-crypto" data-tier="No Ban" data-price="$19.99">₿ Pay with Crypto</button>
     </div>
 
-  </div><!-- /.guides-grid -->
+  </div>
 
-  <!-- Reviews -->
+  <!-- REVIEWS -->
   <div class="reviews-section">
     <div class="reviews-label">Reviews</div>
-    <div class="reviews-title">What customers are saying.</div>
+    <h2 class="reviews-title">What customers are saying.</h2>
     <div class="review-grid">
-
       <div class="review-card">
         <p class="review-text">"Actually kinda crazy, didn't know this much information was on monkey. Every night i be so happy cus i know when i get on it's so live!"</p>
         <div class="review-author">
-          <div class="review-avatar">AH</div>
-          <div>
-            <div class="review-name">Alfred H.</div>
-            <div class="review-tag">Verified Buyer · Monkey.app</div>
-          </div>
+          <div class="review-avatar">A</div>
+          <div><div class="review-name">Alfred H.</div><div class="review-tag">Verified Buyer · Monkey.app</div></div>
         </div>
       </div>
-
       <div class="review-card">
-        <p class="review-text">"Great videos and order was literally instant! Check my email and the order came in like one minute. Opened it up and got exactly what the description said."</p>
+        <p class="review-text">"Great videos and order was literally instant! Check my email and the order came in like one minute."</p>
         <div class="review-author">
-          <div class="review-avatar">YB</div>
-          <div>
-            <div class="review-name">Yousef B.</div>
-            <div class="review-tag">Verified Buyer · MonkeyGod Guide</div>
-          </div>
+          <div class="review-avatar">Y</div>
+          <div><div class="review-name">Yousef B.</div><div class="review-tag">Verified Buyer · MonkeyGod Guide</div></div>
         </div>
       </div>
-
       <div class="review-card">
-        <p class="review-text">"Order was instant, the guide is actually solid — covered things I didn't know about the app timing. Already seeing better sessions. Would recommend."</p>
+        <p class="review-text">"Order was instant, the guide is actually solid — covered things I didn't know about the app timing."</p>
         <div class="review-author">
-          <div class="review-avatar">CB</div>
-          <div>
-            <div class="review-name">Cynere B.</div>
-            <div class="review-tag">Verified Buyer · MonkeyGod Guide</div>
-          </div>
+          <div class="review-avatar">C</div>
+          <div><div class="review-name">Cynere B.</div><div class="review-tag">Verified Buyer · MonkeyGod Guide</div></div>
         </div>
       </div>
-
       <div class="review-card">
-        <p class="review-text">"Literally got into a room full of girls within 10 minutes of following the method. This is not a scam lol. Actually works."</p>
+        <p class="review-text">"Literally got into a room full of girls within 10 minutes of following the method. This is not a scam lol."</p>
         <div class="review-author">
-          <div class="review-avatar">MR</div>
-          <div>
-            <div class="review-name">Marcus R.</div>
-            <div class="review-tag">Verified Buyer · Girls Only Guide</div>
-          </div>
+          <div class="review-avatar">M</div>
+          <div><div class="review-name">Marcus R.</div><div class="review-tag">Verified Buyer · Girls Only Guide</div></div>
         </div>
       </div>
-
       <div class="review-card">
-        <p class="review-text">"No Ban method is real. Been banned twice before buying this, haven't been banned since. The unban steps work too."</p>
+        <p class="review-text">"No Ban method is real. Been banned twice before buying this, haven't been banned since."</p>
         <div class="review-author">
-          <div class="review-avatar">TK</div>
-          <div>
-            <div class="review-name">Tyler K.</div>
-            <div class="review-tag">Verified Buyer · No Ban Guide</div>
-          </div>
+          <div class="review-avatar">T</div>
+          <div><div class="review-name">Tyler K.</div><div class="review-tag">Verified Buyer · No Ban Guide</div></div>
         </div>
       </div>
-
       <div class="review-card">
-        <p class="review-text">"Got the all-in-one bundle. Honestly should've been the first thing I bought. Covers everything and the PDF is clean — easy to follow."</p>
+        <p class="review-text">"Got the all-in-one bundle. Honestly should've been the first thing I bought. Covers everything and the PDF is clean."</p>
         <div class="review-author">
-          <div class="review-avatar">DS</div>
-          <div>
-            <div class="review-name">Devon S.</div>
-            <div class="review-tag">Verified Buyer · All-In-One Bundle</div>
-          </div>
+          <div class="review-avatar">D</div>
+          <div><div class="review-name">Devon S.</div><div class="review-tag">Verified Buyer · All-In-One Bundle</div></div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- MonkeyGod strip -->
+  <!-- MG STRIP -->
   <div class="mg-strip">
-    <div class="mg-left">
-      <div class="mg-label">🛠 Tools &amp; Extensions</div>
+    <div>
+      <div class="mg-label">Get the Tools</div>
       <div class="mg-title">Get all the Monkey / OmeTV tools</div>
-      <div class="mg-sub">Scripts, extensions, and tools to maximize your session — all in one place.</div>
+      <p class="mg-sub">MonkeyGod.us has everything you need to run the methods at full output.</p>
     </div>
-    <a href="https://monkeygod.us" target="_blank" rel="noopener" class="mg-btn">VISIT MONKEYGOD.US →</a>
+    <a href="https://monkeygod.us" target="_blank" rel="noopener" class="mg-btn">Visit MonkeyGod.us →</a>
   </div>
 
-</div><!-- /.page -->
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <a href="/">Home</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="/refund">Refund Policy</a>
+    <a href="/2257">2257</a>
+    <a href="https://t.me/killsaints" target="_blank" rel="noopener">Support</a>
+  </div>
 
-<!-- Footer -->
-<div class="page-footer">
-  <a href="/">← Home</a>
-  <a href="/privacy">Privacy</a>
-  <a href="/terms">Terms</a>
-  <a href="/refund">Refund Policy</a>
-  <a href="/2257">2257</a>
-  <a href="https://t.me/killsaints" target="_blank" rel="noopener">Support</a>
 </div>
 
-<!-- ── CRYPTO MODAL ── -->
+<!-- CRYPTO MODAL -->
 <div class="cr-overlay" id="cr-overlay">
   <div class="cr-modal">
     <button class="cr-close" id="cr-close">✕</button>
@@ -701,13 +626,11 @@
       openCrypto(bundleBtn.dataset.tier,bundleBtn.dataset.price);
     });
   }
-
   document.querySelectorAll('.guide-crypto').forEach(function(btn){
     btn.addEventListener('click',function(){
       openCrypto(btn.dataset.tier,btn.dataset.price);
     });
   });
-
   document.getElementById('cr-close').addEventListener('click',function(){
     crOverlay.classList.remove('show');
   });
